@@ -1,0 +1,153 @@
+
+body {
+    font-family: "Noto Sans JP";
+    color:#333;
+    line-height: 2;
+    margin: 0 auto;
+    padding: 0 80px;
+    background-color: #F9FEFD;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  img {
+    max-width: 100%;
+    vertical-align: bottom;
+    object-fit: cover;
+  }
+  
+  li {
+    list-style: none;
+  }
+
+
+/* ---------------------------
+header
+---------------------------- */
+  header {
+    position: relative;
+    height: 100vh;
+  }
+ 
+  .header-container {
+    display: flex;
+  }
+  
+  .header-container img {
+    width: 400px;
+  }
+  
+  .header-nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 360px;
+    line-height: 7;
+    margin-left: 100px; 
+  }
+  
+  .radial {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+  
+  .main_message {
+    position: absolute;
+    top: 19%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  
+  .main-message_text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+  }
+  
+  .main-message_text img {
+    width: 40%;
+  }
+  
+  .main-message_text p {
+    font-family: "DotGothic16";
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .spin-ring {
+    width: 60vh;
+  }
+  
+  /* mv-ringの回転アニメーション */
+  .spin-ring {
+    animation: spin 40s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+      /* アニメーション開始時：0度 */
+    }
+  
+    to {
+      transform: rotate(360deg);
+      /* アニメーション終了時：360度（1周） */
+    }
+  }
+
+  /* ---------------------------
+  main共通 
+  ---------------------------*/
+  section {
+    padding-bottom: 100px;
+  }
+
+  .wrapper {
+    max-width: 900px;
+  }
+
+  /* ---------------------------
+  about 
+  ---------------------------*/
+
+
+  /* ---------------------------
+  guide 
+  ---------------------------*/
+
+
+  /* ---------------------------
+  voice
+  --------------------------- */
+
+
+  /*---------------------------
+   q&a 
+   ---------------------------*/
+
+
+  /* ---------------------------
+  cta 
+  ---------------------------*/
+
+
+  /* ---------------------------
+  footer 
+  ---------------------------*/
+
+
+ /* ---------------------------
+  レスポンシブ対応
+  ---------------------------*/
+  @media screen and (max-width: 400px) {
+
+
+
+  }
