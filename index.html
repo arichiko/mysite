@@ -1,42 +1,89 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Metaleaf</title>
+    <meta name="description" content="Metaleafは、バーチャル空間で学習者が集うオンラインコミュニティです。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <h1>hello</h1>
+
+        <div class="header-container">
+            <h1><a href="#"><img src="img/logo.png" alt="logo"></a></h1>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#about">What is Metaleaf</a></li>
+                    <li><a href="#guide">GUIDE</a></li>
+                    <li><a href="#qa">Q&amp;A</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <img class="radial" src="img/pcmv-radial.png" alt="radial">
+        <div class="main_message">
+            <img class="spin-ring" src="img/pcmv-ring.png" alt="link">
+            <div class="main_message-text">
+                <img src="img/logomark.png" alt="logo-mark">
+                <p>歩いて出会える学びの世界</p>
+                <p>ひとりで悩まない
+                    <br>つながるから、動き出せる。
+                </p>
+                <a class="start-btn" href="#">START</a>
+            </div>
+        </div>
     </header>
+
     <main>
-        <p>Welcome to the page!</p>
-        <p>This is a simple HTML document.</p>
-
-        <section>
-            <ul>
-                <li>aaa</li>
-                <li>bbb</li>
-                <li>ccc</li>
-            </ul>
+        <section class="about wrapper" id="about">
+            <div class="section-title">
+                <h2>What is Meta<span>leaf</span></h2>
+                <p>Metaleafとは</p>
+            </div>
+            
         </section>
+        <section class="guide" id="guide">
+            <div class="section-title">
+                <h2>GUIDE</h2>
+                <p>Metaleafでできること</p>
+            </div>
 
-
-        <h3>test</h3>
-
-        <section>
-            <h2>arika  first commit on push main branch</h2>
         </section>
+        <section class="voice wrapper" id="voice">
+            <div class="section-title">
+                <h2>VOICE</h2>
+                <p>参加者の声</p>
+            </div>
 
-        <section>
-            <p>おはようございます</p>
         </section>
+        <section class="qa wrapper" id="qa">
+            <div class="section-title">
+                <h2>Q&amp;A</h2>
+                <p>よくある質問</p>
+            </div>
+
+        </section>
+        <div class="cta">
+
+        </div>
+
     </main>
-    <footer></footer>
+
+    <footer>
+        <p> &copy; metaleaf. All rights Reserved.</p>
+    </footer>
+
 </body>
-
+  
 </html>
-
