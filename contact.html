@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Metaleaf</title>
+    <meta name="description" content="Metaleafは、バーチャル空間で学習者が集うオンラインコミュニティです。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1><a href="index.html"><img src="img/logo.png" alt="logo"></a></h1>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#about">What is Metaleaf</a></li>
+                    <li><a href="#guide">GUIDE</a></li>
+                    <li><a href="#qa">Q&amp;A</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-inner">
+            <div class="header-inner-list">
+                <ul>
+                    <li><a href="#about">What is Metaleaf</a></li>
+                    <li><a href="#guide">GUIDE</a></li>
+                    <li><a href="#qa">Q&amp;A</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mask"></div>
+    </header>
+
+    <main>
+        <div class="contact-container">
+            <section class="contact">
+                <div class="section-title">
+                    <h2>contact</h2>
+                    <p>お問い合わせ</p>
+                </div>
+                <form class="contact-form" action="">
+                    <dl>
+                        <dt><span>必 須</span>お問い合わせ区分</dt>
+                        <dd>
+                            <ul class="button-list">
+                                <li class="button-list-item">
+                                    <label class="inout-radio" for="#"><input type="radio" name="category" value="1"
+                                            required>
+                                        <span>Metaleafに参加する</span></label>
+                                </li>
+                                <li class="button-list-item">
+                                    <label class="inout-radio" for="#"><input type="radio" name="category" value="2"
+                                            required>
+                                        <span>お問い合わせ</span></label>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dt class="form-title"><span>必 須</span>氏　名</dt>
+                        <dd class="form-content"><input type="text" placeholder="例：米田　葉" name="name" required></dd>
+                        <dt class="form-title"><span>必 須</span>ふりがな</dt>
+                        <dd class="form-content"><input type="text" placeholder="例：めた　りいふ" name="read-name" required>
+                        </dd>
+                        <dt class="form-title"><span>必 須</span>メールアドレス</dt>
+                        <dd class="form-content"><input type="text" placeholder="例：metaleaf@xxx.jp" name="name"
+                                required></dd>
+                        <dt class="form-title"><span>必 須</span>お問い合わせ内容詳細</dt>
+                        <dd class="form-content"><textarea name="contact-detail" placeholder="例：利用条件はありますか？"></textarea>
+                        </dd>
+                    </dl>
+                    <div class="form-button">
+                        <button type="submit" disabled>送　信</button>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+
+    </main>
+
+    <footer>
+        <p> &copy; metaleaf. All rights Reserved.</p>
+    </footer>
+</body>
+
+</html>
