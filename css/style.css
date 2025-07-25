@@ -4,7 +4,6 @@ body {
     color:#333;
     line-height: 2;
     margin: 0 auto;
-    padding: 0 80px;
     background-color: #F9FEFD;
   }
   
@@ -13,11 +12,10 @@ body {
     color: #333;
   }
   
-  img {
-    max-width: 100%;
+  /* img {
     vertical-align: bottom;
     object-fit: cover;
-  }
+  } */
   
   li {
     list-style: none;
@@ -30,87 +28,175 @@ header
   header {
     position: relative;
     height: 100vh;
+    overflow: hidden;
   }
  
   .header-container {
     display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    position: relative;
+    z-index: 100;
   }
   
   .header-container img {
-    width: 400px;
+    width: 200px;
   }
   
   .header-nav ul {
     display: flex;
     justify-content: space-between;
     width: 360px;
-    line-height: 7;
+    line-height: 3;
     margin-left: 100px; 
+  }
+
+  .header-nav a {
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .header-nav a:hover {
+    border-bottom: 1px solid #333;
+  }
+
+  .radial ,
+  .center-circle,
+  .main_message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0 auto;
   }
   
   .radial {
     height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    width: auto;
+    display: block;
+    z-index: -2;
+  }
+
+  .center-circle {
     z-index: -1;
   }
-  
-  .main_message {
-    position: absolute;
-    top: 19%;
-    left: 50%;
-    transform: translate(-50%);
-  }
-  
-  .main-message_text {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 1;
-  }
-  
-  .main-message_text img {
-    width: 40%;
-  }
-  
-  .main-message_text p {
-    font-family: "DotGothic16";
-    text-align: center;
-    margin: 0 auto;
-  }
-  
+
   .spin-ring {
     width: 60vh;
-  }
-  
-  /* mv-ringの回転アニメーション */
-  .spin-ring {
     animation: spin 40s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
   
   @keyframes spin {
     from {
-      transform: rotate(0deg);
-      /* アニメーション開始時：0度 */
+      transform: translate(-50%,-50%) rotate(0deg);
     }
   
     to {
-      transform: rotate(360deg);
-      /* アニメーション終了時：360度（1周） */
+      transform: translate(-50%,-50%) rotate(360deg);
     }
   }
+  
+  .main_message {
+    width: 500px;
+    height: 400px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .main_message img {
+    width: 150px;
+  }
+  
+  .main_message p {
+    font-family: "DotGothic16";
+    margin: 0 auto;
+    font-size: 24px;
+    padding: 10px; 
+    letter-spacing: 0.1em;
+  }
+
+  .main_message a {
+    color: #54A296;
+    font-family: "DotGothic16";
+    display: block;
+    font-size: 24px;
+    letter-spacing: 0.2em; 
+    position: relative;
+    box-sizing: border-box;
+    max-width: 130px;
+    padding: 4px 16px 4px 0;
+    transition: all 0.3s;
+  }
+
+  .main_message a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 130px;
+    height: 3px;
+    background-color: #54A296;
+    bottom: 0;
+    left: -20px;
+    transition: all 0.3s;
+  }
+
+  .main_message a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: #54A296;
+    rotate: 45deg;
+    right: -15px;
+    bottom: 10px;
+    transition: all 0.3s;
+  }
+
+  .main_message a:hover {
+    color: #F6C361;
+  }
+  .main_message a:hover::before,
+  .main_message a:hover::after {
+    background-color: #F6C361;
+  }
+
+
+
 
   /* ---------------------------
   main共通 
   ---------------------------*/
+  main {
+    padding: 0 80px;
+    position: relative;
+  }
+
   section {
     padding-bottom: 100px;
   }
 
   .wrapper {
     max-width: 900px;
+  }
+
+  .backwave {
+    height: 3000px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    top: -25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -10;
   }
 
   /* ---------------------------
@@ -121,6 +207,104 @@ header
   /* ---------------------------
   guide 
   ---------------------------*/
+
+  /* event */
+  .event {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  .event_texts {
+    width: 45%;
+    margin-bottom: 16px;
+  }
+
+  .event_card {
+    width: 45%;
+  }
+
+  .event-card li {
+    width: 100%;
+    border-radius: 20px;
+    margin: 0 0 32px 32px;
+  }
+
+  .blue-card {
+    border: 14px solid #5FA4FF;
+    background-color: #5FA4FF;
+    
+  }
+
+  .orange-card {
+    border: 14px solid #FFA787;
+    background-color: #FFA787;
+  }
+
+  .green-card {
+    border: 14px solid #84D8A9;
+    background-color: #84D8A9;
+  }
+
+  .event_card-upper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .event_card-left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .card-number {
+    font-size: 80px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .card-left-title {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .event_card-image {
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .event_card-image img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .event_card-lower {
+    height: auto;
+    background-color: white;
+    border-radius: 0 0 20px 20px;
+    padding: 10px;
+  }
+
+  .blue-card .lower-topic {
+    color: #5FA4FF;
+  }
+
+  .orange-card .lower-topic {
+    color: #FFA787;
+  }
+
+  .green-card .lower-topic {
+    color: #84D8A9;
+  }
+
+
 
 
   /* ---------------------------
@@ -146,8 +330,83 @@ header
  /* ---------------------------
   レスポンシブ対応
   ---------------------------*/
+  
   @media screen and (max-width: 400px) {
 
+  
+
+ /* ---------------------------
+  header
+ ---------------------------- */
+
+ .main_message img {
+  width: 60px;}
+
+ .main_message a ,
+ .main_message p {
+  font-size: 16px;
+ }
+
+
+  /* ---------------------------
+  main共通 
+  ---------------------------*/
+  main {
+    padding: 0 40px;
+  }
+
+
+  /* ---------------------------
+  about 
+  ---------------------------*/
+
+/* ---------------------------
+  guide 
+  ---------------------------*/
+
+  /* event */
+  .event ,
+  .event_card-upper {
+    flex-direction: column;
+  }
+
+  .event_texts,
+  .event_card,
+  .event_card-left,
+  .event_card-image 
+   {
+    width: 100%;
+  }
+
+  .event_card-left {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .card-number {
+    font-size: 48px;
+  }
+
+  /* ---------------------------
+  voice
+  --------------------------- */
+
+
+  /*---------------------------
+   q&a 
+   ---------------------------*/
+
+
+  /* ---------------------------
+  cta 
+  ---------------------------*/
+
+
+  /* ---------------------------
+  footer 
+  ---------------------------*/
 
 
   }
