@@ -1,3 +1,7 @@
+/* ---------------------------
+  guide　横スクロールアニメーション
+  ---------------------------*/
+
 gsap.registerPlugin(ScrollTrigger);
 
 // 横スクロールさせるパネルのセレクタを調整
@@ -14,3 +18,96 @@ gsap.to(sections, {
     end: () => "+=" + document.querySelector(".guide").offsetWidth // アニメーション終了のスクロール量
   }
 });
+
+/* ---------------------------
+  guide　sp時カードのクリックイベント
+  ---------------------------*/
+document.addEventListener('DOMContentLoaded', () => {
+    // 全てのカードアイテムを取得
+    const cardItems = document.querySelectorAll('.card-item');
+
+    // タッチデバイスかどうかを判定する関数
+    const isTouchDevice = () => {
+        return ('ontouchstart' in window) ||
+               (navigator.maxTouchPoints > 0) ||
+               (navigator.msMaxTouchPoints > 0);
+    };
+
+    if (isTouchDevice()) {
+        // タッチデバイスの場合
+        cardItems.forEach(cardItem => {
+            const card = cardItem.querySelector('.card');
+            
+            // クリックイベントリスナーを追加
+            card.addEventListener('click', () => {
+                // 'is-flipped' クラスをトグルする (あれば削除、なければ追加)
+                card.classList.toggle('is-flipped');
+            });
+
+            // カードの裏面をクリックしたときに、リンクが反応するように考慮
+            // 例えば、card-back-text 内の a タグがクリックされた場合は、カードを裏返さない
+            const cardBackText = card.querySelector('.card-back-text');
+            if (cardBackText) {
+                cardBackText.addEventListener('click', (e) => {
+                    e.stopPropagation(); // イベントのバブリングを停止
+                    // ここでリンクのデフォルト動作（ページ遷移）は維持される
+                });
+            }
+        });
+    } else {
+        // デスクトップ（ホバー可能なデバイス）の場合、JavaScriptでの操作は不要
+        // CSSの @media (hover: hover) で制御されるため
+    }
+});
+
+/*=================================================
+  Inview（画面に表示されたタイミングで処理を実行）
+  ===================================================*/
+  $(window).scroll(function () {
+    $(".slide-left").each(function () {
+
+      var scroll = $(window).scrollTop();
+
+      var target = $(this).offset().top;
+
+      var windowHeight = $(window).height();
+
+      if (scroll > target - windowHeight + $(this).outerHeight()) {
+        // outerHeight()はpaddingを含めた高さを取得する
+        $(this).addClass("inview-slide-left");
+      }
+    });
+  });
+  // これを複数使う
+
+  $(window).scroll(function () {
+    $(".slide-right").each(function () {
+
+      var scroll = $(window).scrollTop();
+
+      var target = $(this).offset().top;
+
+      var windowHeight = $(window).height();
+
+      if (scroll > target - windowHeight + $(this).outerHeight()) {
+        // outerHeight()はpaddingを含めた高さを取得する
+        $(this).addClass("inview-slide-right");
+      }
+    });
+  });
+
+  $(window).scroll(function () {
+    $(".voice-item").each(function () {
+
+      var scroll = $(window).scrollTop();
+
+      var target = $(this).offset().top;
+
+      var windowHeight = $(window).height();
+
+      if (scroll > target - windowHeight + $(this).outerHeight()) {
+        // outerHeight()はpaddingを含めた高さを取得する
+        $(this).addClass("inview-voice-item");
+      }
+    });
+  });

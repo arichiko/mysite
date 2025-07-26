@@ -186,6 +186,7 @@ header
 
   .wrapper {
     max-width: 900px;
+    margin: 0 auto;
   }
 
   .backwave {
@@ -208,7 +209,7 @@ header
   guide
   ---------------------------*/
 .guide {
-  width: 100;
+  width: 100%;
 }
 
 /* --- 横スクロール部分のコンテナ設定 --- */
@@ -220,18 +221,17 @@ header
   padding-left: 120px;
   margin-block: 40px 120px;
   align-items: center;
-  /* max-width: 1600px; カードグリッドの最大幅 */
   box-sizing: border-box;
   }
 
 /* 各パネル (カードのグループ) */
 .card-item {
-    flex-shrink: 0; /* パネルが縮まないようにする */
+    flex-shrink: 0; /*　パネルが縮まないようにする */
     width: 30%;
     aspect-ratio: 3 / 4;
     position: relative;
     margin-right: 40px;
-    min-width: 280px;
+    min-width: 330px;
     max-width: 350px;
 }
 
@@ -247,9 +247,18 @@ header
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
-.card-item:hover .card {
-    transform: rotateY(180deg); /* ホバー時にY軸で180度回転 */
+@media (hover: hover) and (pointer: fine) {
+    .card-item:hover .card {
+        transform: rotateY(180deg);
+    }
 }
+
+/* タッチデバイス用: 'is-flipped' クラスが付与されたら回転 */
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+
 
 .card-face {
     position: absolute;
@@ -324,7 +333,7 @@ header
   color: #333;
 }
 
-.card-back-text span {
+.card-back-text span,.card-back-text a{
   color: #5FA4FF;
 }
 
@@ -474,6 +483,142 @@ header
   /* ---------------------------
   voice
   --------------------------- */
+.voice .voice-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.voice .voice-item .entrant img {
+  width: 120px;
+}
+
+
+.voice .voice-item .balloon {
+  width: 70%;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #E1F4F2;
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.voice .voice-item .balloon .name {
+  font-size: 0.75rem;
+}
+
+.balloon hr {
+  border: none; /* デフォルトのボーダーをリセット */
+  border-top: 2px solid #E8B045;
+  margin-block: 16px;
+  width: 100%; /* 幅を親要素の80%に設定 */
+}
+
+@media screen and (max-width: 900px) {
+  .voice {
+    padding-block: 80px 30px;
+  }
+  .voice .voice-item {
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .voice .voice-item .balloon {
+    width: 100%;
+  }
+}
+.voice .inview-voice-item {
+  -webkit-animation: zoomin 0.6s forwards 0s 1 ease-out;
+          animation: zoomin 0.6s forwards 0s 1 ease-out;
+}
+@-webkit-keyframes zoomin {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes zoomin {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.voice .voice-left {
+  justify-content: flex-start;
+}
+.voice .voice-left .balloon {
+  margin-left: 25px;
+}
+.voice .voice-left .balloon::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: -18px;
+  margin-left: -12px;
+  border: 15px solid transparent;
+  border-right: 15px solid #E1F4F2;
+  z-index: 2;
+}
+
+@media screen and (max-width: 900px) {
+  .voice .voice-left {
+    flex-direction: column-reverse;
+  }
+  .voice .voice-left .balloon {
+    margin-left: 0;
+  }
+  .voice .voice-left .balloon::before {
+    top: 100%;
+    left: 0;
+    margin-left: calc(50% - 15px);
+    border: 15px solid transparent;
+    border-top: 15px solid #E1F4F2;
+  }
+}
+
+.voice .voice-right {
+  justify-content: flex-end;
+}
+.voice .voice-right .balloon {
+  margin-right: 25px;
+}
+.voice .voice-right .balloon::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  right: -18px;
+  margin-right: -12px;
+  border: 15px solid transparent;
+  border-left: 15px solid #E1F4F2;
+  z-index: 2;
+}
+
+@media screen and (max-width: 900px) {
+  .voice .voice-right {
+    flex-direction: column;
+  }
+  .voice .voice-right .balloon {
+    margin-right: 0;
+  }
+  .voice .voice-right .balloon::before {
+    top: 100%;
+    right: 0;
+    margin-right: calc(50% - 15px);
+    border: 15px solid transparent;
+    border-top: 15px solid #E1F4F2;
+  }
+}
 
 
   /*---------------------------
@@ -497,7 +642,7 @@ header
 
   @media screen and (max-width: 400px) {
 
-
+  
  /* ---------------------------
   header
  ---------------------------- */
@@ -526,141 +671,6 @@ header
 /* ---------------------------
   guide
   ---------------------------*/
-.guide {
-  width: 100vw;
-  height: 100vh;
-}
-/* --- 横スクロール部分のコンテナ設定 --- */
-.card-list {
-    display: flex;
-    flex-wrap: nowrap;
-    perspective: 1000px; /* カードの3D効果 */
-    padding-left: 120px;
-    align-items: center;
-    /* max-width: 1600px; カードグリッドの最大幅 */
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-/* 各パネル (カードのグループ) */
-.card-item {
-    flex-shrink: 0; /* パネルが縮まないようにする */
-    width: 30%;
-    aspect-ratio: 3 / 4; /* アスペクト比を3:4に設定 */
-    position: relative;
-    margin-right: 40px;
-}
-
-/* --- ホバーで裏返るカードのスタイリング--- */
-.card {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transform-style: preserve-3d; /* 子要素の3D変換を保持 */
-    transition: transform 0.6s ease-in-out;
-    cursor: pointer;
-    border-radius: 20px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
-}
-
-.card-wrapper:hover .card {
-    transform: rotateY(180deg); /* ホバー時にY軸で180度回転 */
-}
-
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; /* 裏面になったときに非表示にする */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.card-front {
-    background-color: #fff;
-    z-index: 2;
-}
-
-.card-front img {
-    max-width: 100px;
-    margin-top: 40px;
-}
-
-.card-front-blue {
-    border:solid 4px #5FA4FF;
-}
-
-.card-front-orange {
-    border:solid 4px #FFA787;
-}
-
-.card-front-green {
-    border:solid 4px #5FCE8F;
-}
-
-.card-front-yellow {
-    border:solid 4px #EFC244;
-}
-
-.card-front-pink {
-    border:solid 4px #EA3676;
-}
-
-.card-front-purple {
-    border:solid 4px #9957B8;
-}
-
-.card-back {
-    color: #fff;
-    transform: rotateY(180deg); /* 最初は裏返しておく */
-}
-
-.card-back p {
-    font-weight: bold;
-}
-
-.card-back img {
-    width: 272px;
-    margin-block: 16px;
-}
-
-.card-back-text {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    text-align: left;
-}
-
-.card-back-blue {
-    background-color: #5FA4FF;
-}
-
-.card-back-orange {
-    background-color: #FFA787;
-}
-
-.card-back-green {
-    background-color: #5FCE8F;
-}
-
-.card-back-yellow {
-    background-color: #EFC244;
-}
-
-.card-back-pink {
-    background-color: #EA3676;
-}
-
-.card-back-purple {
-    background-color: #9957B8;
-}
 
 
   /* event */
@@ -692,7 +702,6 @@ header
   voice
   --------------------------- */
 
-
   /*---------------------------
    q&a
    ---------------------------*/
@@ -708,4 +717,4 @@ header
   ---------------------------*/
 
 
-  }
+}
