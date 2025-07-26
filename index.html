@@ -6,7 +6,7 @@
     <title>Metaleaf</title>
     <meta name="description" content="Metaleafは、バーチャル空間で学習者が集うオンラインコミュニティです。">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+    <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 <body>
     <header>
         <div class="header-container">
-            <h1><a href="#"><img src="img/logo.png" alt="logo"></a></h1>
+            <h1><a href="index.html"><img src="img/logo.png" alt="logo"></a></h1>
             <nav class="header-nav">
                 <ul>
                     <li><a href="#about">What is Metaleaf</a></li>
@@ -27,6 +27,22 @@
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul>
             </nav>
+            <div class="header-inner">
+                <div class="header-inner-list">
+                    <ul>
+                        <li><a href="#about">What is Metaleaf</a></li>
+                        <li><a href="#guide">GUIDE</a></li>
+                        <li><a href="#qa">Q&amp;A</a></li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </div>
+            </div>
+            <button class="toggle-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="mask"></div>
         </div>
 
         <img class="radial" src="img/pcmv-radial.png" alt="radial">
@@ -34,7 +50,7 @@
             <img class="spin-ring" src="img/pcmv-ring.png" alt="link">
         </div>
 
-        <div class="main_message">
+        <div class="main-message">
             <img src="img/logomark.png" alt="logo-mark">
             <p>歩いて出会える学びの世界</p>
             <p>ひとりで悩まない
@@ -218,57 +234,61 @@
             </ul>
 
             <div class="event">
-                <div class="event-text">
-                    <p>MetaLeafでは、学習者や講師たちと交流を深めるためのイベントやスキルアップを図れるイベントが多数開催されています</p>
+
+                <div class="event-texts">
+                    <p>MetaLeafでは、学習者や講師たちと交流を深めるためのイベントやスキルアップを図ることができるイベントが多数開催されています。ここでは、その一部をご紹介します。</p>
+                    <p>様々なテーマのイベントを通じて、普段の学習では得られない新たな発見や刺激を得ることができます。ぜひ、興味のあるイベントに参加して、あなたの学習をさらに加速させてください。</p>
+
                 </div>
                 <ul class="event-card">
                     <li class="blue-card">
-                        <div class="event_card-upper">
-                            <div class="event_card-left">
+                        <div class="event-card-upper">
+                            <div class="event-card-left">
                                 <p class="card-number">01</p>
                                 <p class="card-left-title">オンライン飲み会</p>
                             </div>
-                            <div class="event_card-image">
+                            <div class="event-card-image">
                                 <img src="img/drinking.png" alt="drinking">
                             </div>
                         </div>
-                        <div class="event_card-lower">
+                        <div class="event-card-lower">
                             <p class="lower-topic">普段話す機会がない人とも交流ができ、モチベーションUP！</p>
                             <p>月に１回程度、定期的に開催されています。</p>
                         </div>
                     </li>
                     <li class="orange-card">
-                        <div class="event_card-upper">
-                            <div class="event_card-left">
+                        <div class="event-card-upper">
+                            <div class="event-card-left">
                                 <p class="card-number">02</p>
                                 <p class="card-left-title">特別セミナー</p>
                             </div>
-                            <div class="event_card-image">
+                            <div class="event-card-image">
                                 <img src="img/seminar-image.png" alt="seminar">
                             </div>
                         </div>
-                        <div class="event_card-lower">
+                        <div class="event-card-lower">
                             <p class="lower-topic">現役エンジニアやスクール講師が登壇するセミナーを開催</p>
                             <p>コーディングのポイントや案件獲得に向けたマインドセット、
                                 AI活用など、様々なテーマを取り上げて行われています。</p>
                         </div>
                     </li>
                     <li class="green-card">
-                        <div class="event_card-upper">
-                            <div class="event_card-left">
+                        <div class="event-card-upper">
+                            <div class="event-card-left">
                                 <p class="card-number">03</p>
                                 <p class="card-left-title">ハッカソン</p>
                             </div>
-                            <div class="event_card-image">
+                            <div class="event-card-image">
                                 <img src="img/hackson.png" alt="hackthon">
                             </div>
                         </div>
-                        <div class="event_card-lower">
+                        <div class="event-card-lower">
                             <p class="lower-topic">チームで限られた期間内に１つの成果物を協力して作成</p>
                             <p>複数人でデザインやコードを共有する方法を学び、他の人のコードを読む練習、進捗管理を経験することができます。</p>
                         </div>
                     </li>
                 </ul>
+                
             </div>
 
         </section>
@@ -345,6 +365,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
 

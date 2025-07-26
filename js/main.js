@@ -1,4 +1,23 @@
 
+
+//toggle-btn
+$(function () {
+  $(".toggle-btn").on("click", function () {
+    if ($("header").hasClass("open")) {
+      $("header").removeClass("open");
+    } else {
+      $("header").addClass("open");
+    }
+  });
+
+  $(".mask").on("click", function () {
+    $("header").removeClass("open");
+  });
+});
+
+// guide
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 // 横スクロールさせるパネルのセレクタを調整
@@ -15,6 +34,9 @@ gsap.to(sections, {
     end: () => "+=" + document.querySelector(".guide").offsetWidth // アニメーション終了のスクロール量
   }
 
+});
+
+// event
 });
 
 $('.accordion-header').click(function() {
