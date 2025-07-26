@@ -1,3 +1,4 @@
+
 gsap.registerPlugin(ScrollTrigger);
 
 // 横スクロールさせるパネルのセレクタを調整
@@ -13,4 +14,5 @@ gsap.to(sections, {
     snap: 1 / (sections.length - 1), // 各パネルの終点でスナップ
     end: () => "+=" + document.querySelector(".guide").offsetWidth // アニメーション終了のスクロール量
   }
+
 });
