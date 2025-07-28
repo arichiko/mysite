@@ -30,12 +30,11 @@ gsap.to(sections, {
   ease: "none", // イージングなしでリニアに
   scrollTrigger: {
     trigger: ".guide", // スクロール開始のトリガー要素
-    pin: true, // トリガー要素をビューポートに固定
+    pin: true,
     scrub: 1, // スクロールにアニメーションを連動 (1は少し遅れて追従)
     snap: 1 / (sections.length - 1), // 各パネルの終点でスナップ
-    end: () => "+=" + document.querySelector(".guide").offsetWidth // アニメーション終了のスクロール量
+    end: () => "+=" + document.querySelector(".guide").offsetWidth
   }
-  
 });
 
 /*=================================================
@@ -113,7 +112,7 @@ $(function () {
 });
 
 /*=================================================
-Inview（画面に表示されたタイミングで処理を実行）
+voice
 ===================================================*/
 $(window).scroll(function () {
   $(".slide-left").each(function () {
@@ -157,4 +156,20 @@ $(window).scroll(function () {
 $('.accordion-header').click(function() {
   $(this).next().slideToggle();
   $(this).toggleClass('active');
+});
+
+/*=================================================
+  背景波線のスクロールアニメーション
+===================================================*/
+$(window).on('scroll', function() {
+    // 現在のスクロール量を取得
+    let scrollTop = $(this).scrollTop();
+
+    // スクロール量に応じて背景の位置を計算
+    // 例: スクロール量1pxにつき、背景を0.5px上に動かす（速度調整）
+    // 数値を調整して「流れる」速度を変えられます
+    let backgroundY = -scrollTop * 1; // スクロールダウンで背景が上に動く
+
+    // bodyのbackground-position-yを更新
+    $('main').css('background-position-y', backgroundY + 'px');
 });
