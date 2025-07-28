@@ -40,7 +40,7 @@ header {
 .header-nav ul {
   display: flex;
   justify-content: space-between;
-  width: 360px;
+  width: 450px;
   line-height: 3;
   margin-left: 16px;
 }
@@ -731,6 +731,9 @@ section {
 .event-texts {
   width: 45%;
   margin-bottom: 16px;
+  position:sticky;
+  top: 20px;
+  align-self: flex-start;
 }
 
 .event-texts p {
@@ -739,39 +742,46 @@ section {
 
 .event-card {
   width: 50%;
-  height: 300vh;
+  /* height: 200vh;
 
-  position: relative;
+  position: relative; */
 }
 
-.event-card li {
+.event-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 450px;
+}
+
+.event-card-contents {
   width: 100%;
   max-width: 600px;
   border-radius: 20px;
   padding: 10px;
   margin: 0 0 32px 16px;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* height: 100%; */
-  
+  box-shadow:0px 3px 8px rgba(0,0,0,0.24);
 }
 
 .blue-card {
   border: 10px solid #5FA4FF;
   background-color: #5FA4FF;
+  position: sticky;
+  top: 0;
 }
   
 
 .orange-card {
   border: 10px solid #FFA787;
   background-color: #FFA787;
+  /* top: 500px; */
 }
 
 .green-card {
   border: 10px solid #84D8A9;
   background-color: #84D8A9;
+  /* top: 1000px; */
 }
 
 .event-card-upper {
@@ -839,8 +849,10 @@ section {
   color: #84D8A9;
 }
 
-
-
+.event-spacer {
+  width: 100%;
+  height: 50vh;
+}
 
 /* ---------------------------
   voice
@@ -1057,10 +1069,6 @@ section {
 .accordion-content p {
     margin: 0;
 }
-
-
-
-
 
 
 /* ---------------------------
@@ -1440,6 +1448,24 @@ footer {
   .contact {
     padding: 0 40px;
   }
+
+  .contact-container {
+    padding: 0 40px;
+    top: -90vh
+  }
+
+.contact dl {
+  flex-direction: column;
+  padding: 40px 8px 0;
+}
+
+.contact dt {
+  width: 100%;
+}
+
+.contact dd {
+  width: 100%;
+}
 
   .contact dd ul:first-of-type {
     flex-direction: column;
