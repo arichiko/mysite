@@ -81,8 +81,36 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 });
 
+/*=================================================
+ event
+===================================================*/
+$(function () {
+  let cards = gsap.utils.toArray(".event-card-wrapper");
 
+  let stickDistance = '100px';
 
+  let lastCardST = ScrollTrigger.create({
+    trigger: cards[cards.length - 1],
+    start: "bottom bottom"
+  });
+
+  cards.forEach((card, index) => {
+
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top top",
+      end: () => "+=450",
+      // end: nextCard ? "top top" : "bottom top",
+      // end: () => lastCardST.start + stickDistance,
+      endTrigger: cards[index + 1] || card, // 次のカードがあれば、それまでで終了
+    // end: cards[index + 1] ? "top center" : "bottom center", // 最後だけ特別
+      pin: true,
+      pinSpacing: false,
+      ease: "none",
+      toggleActions: "restart none none reverse"
+    });
+  });
+});
 
 /*=================================================
 Inview（画面に表示されたタイミングで処理を実行）
