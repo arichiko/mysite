@@ -324,10 +324,34 @@ section {
   width: 40vw;
 
 }
+.section-title{
+  position: relative;
+}
+.section-title img{
+  width: 150px;
+  height: 150px;
+}
+.section-title h2 {
+  position: absolute;
+  top: 35px;
+  left: 55px;
+}
+.section-title span{
+  color: #2C8C7E;
+}
+.section-title p{
+  position: absolute;
+  top: 70px;
+  left: 55px;
+  color: #F6C361;
+}
 
 /* ---------------------------
   about
   ---------------------------*/
+  .about{
+    overflow-x: hidden;
+  }
   .about-text{
     text-align: center;
     margin-bottom: 20px;
