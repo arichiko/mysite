@@ -289,6 +289,12 @@ header {
 main {
   padding: 0 80px;
   position: relative;
+
+  background-image: url('../img/backwave.svg');
+  background-repeat: repeat-y; /* 縦方向にリピートさせる（必要であれば） */
+  background-position: center top; /* 初期位置を中央の上部に設定 */
+  background-size: 40vw auto; /* 幅を40vwに設定し、高さは自動調整 */
+  background-attachment: fixed; /* ★ビューポートに背景を固定する★ */
 }
 
 section {
@@ -300,7 +306,7 @@ section {
     margin: 0 auto;
   }
 
-.backwave {
+/* .backwave {
   height: 3000px;
   margin: 0 auto;
   overflow-y: hidden;
@@ -309,11 +315,14 @@ section {
   left: 50%;
   transform: translateX(-50%);
   z-index: -10;
-}
+  pointer-events: none;
+} */
 
 .backwave img {
   height: 3000px;
+  /* height: 100%; */
   width: 40vw;
+
 }
 
 /* ---------------------------
@@ -383,22 +392,21 @@ section {
   ---------------------------*/
 .guide {
   width: 100%;
+  overflow-x: hidden;
+  min-height: 1200px;
 }
 
-/* --- 横スクロール部分のコンテナ設定 --- */
 .card-list {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
-  perspective: 1000px;
-  /* カードの3D効果 */
-  padding-left: 120px;
+  perspective: 1000px;/* カードの3D効果 */
+  padding-left: 80px;
   margin-block: 40px 120px;
   align-items: center;
   box-sizing: border-box;
 }
 
-/* 各パネル (カードのグループ) */
 .card-item {
     flex-shrink: 0; /*パネルが縮まないようにする */
     width: 30%;
@@ -409,13 +417,14 @@ section {
     max-width: 350px;
 }
 
+
+
 /* --- ホバーで裏返るカードのスタイリング--- */
 .card {
   width: 100%;
   height: 100%;
   position: absolute;
-  transform-style: preserve-3d;
-  /* 子要素の3D変換を保持 */
+  transform-style: preserve-3d;/* 子要素の3D変換を保持 */
   transition: transform 0.6s ease-in-out;
   cursor: pointer;
   border-radius: 20px;
@@ -423,14 +432,14 @@ section {
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .card-item:hover .card {
-        transform: rotateY(180deg);
-    }
+  .card-item:hover .card {
+    transform: rotateY(180deg);
+  }
 }
 
-/* タッチデバイス用: 'is-flipped' クラスが付与されたら回転 */
+/* タッチデバイス用: */
 .card.is-flipped {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 
@@ -439,8 +448,7 @@ section {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  /* 裏面になったときに非表示にする */
+  backface-visibility: hidden;/* 裏面になったときに非表示にする */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -489,7 +497,6 @@ section {
 .card-back {
   color: #fff;
   transform: rotateY(180deg);
-  /* 最初は裏返しておく */
   justify-content: flex-start;
   padding: 10%;
 }
@@ -505,7 +512,6 @@ section {
 
 .card-back-text {
   text-align: left;
-  /* テキストは左揃え */
   padding: 8px 16px;
   background-color: #fff;
   border-radius: 5px;
@@ -558,6 +564,135 @@ section {
 
 .card-back-purple {
   background-color: #9957B8;
+}
+
+/* ---------------------------
+  guide: SP表示時のカード回転ヒント
+---------------------------*/
+@media screen and (max-width: 800px) { /* スマホやタブレット縦表示のブレークポイントに合わせて調整 */
+    .card-item:first-of-type .card {
+        animation: subtle-flip 2.5s ease-in-out infinite;
+        transform-origin: center center;
+    }
+
+    /* アニメーションのキーフレーム */
+    @keyframes subtle-flip {
+        0%, 100% {
+            transform: rotateY(0deg);
+        }
+        10% {
+            transform: rotateY(8deg); /* 少しだけ回す */
+        }
+        20% {
+            transform: rotateY(-6deg); /* 逆方向に少し戻す */
+        }
+        30% {
+            transform: rotateY(0deg);
+        }
+        60% {
+            transform: rotateY(0deg);
+        }
+    }
+
+    /* ヒントテキストのスタイル */
+    .flip-hint-text {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        color: #fff;
+        background-color: #333; /* 暗めの背景色 */
+        padding: 4px 8px;
+        border-radius: 4px;
+        opacity: 0;
+        animation: fadeInOut 5s ease-out forwards;
+        animation-delay: 1.5s;
+        pointer-events: none;
+        z-index: 10;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* フェードイン・アウトアニメーション */
+    @keyframes fadeInOut {
+        0% { opacity: 0; }
+        15% { opacity: 1; }
+        85% { opacity: 1; }
+        100% { opacity: 0; display: none; }
+    }
+}
+
+/* デスクトップ（ホバー可能なデバイス）ではヒントを非表示にする */
+@media (hover: hover) {
+    .card-item:first-child .card {
+        animation: none; /* デスクトップではアニメーションを無効化 */
+    }
+    .flip-hint-text {
+        display: none; /* デスクトップではヒントテキストを完全に非表示 */
+    }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding: 0 24px;
+  }
+  .card-list {
+    padding-inline: 8px;
+    margin-block: 40px 80px;
+  }
+  .card-item {
+    min-width: 260px;
+    max-width: 280px;
+    margin-right: 16px;
+  }
+  .card-face {
+    padding: 16px;
+  }
+
+  .card-back {
+  padding: 5%;
+  }
+  
+  .card-back img {
+    margin-block: 8px;
+  }
+  
+  .card-back-text {
+    padding: 4px 8px;
+  }
+  .card-back-title,
+  .card-back-text {
+    line-height: 1.6;
+    font-size: 0.875rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .card-list {
+    padding-inline: 20px 40px;
+    margin-block: 40px 60px;
+  }
+  .card-item {
+    min-width: 220px;
+    max-width: 260px;
+    margin-right: 8px;
+  }
+
+  .card-face {
+    padding: 16px;
+  }
+
+  .card-front img {
+  max-width: 80px;
+  margin-top: 24px;
+  display: block;
+}
+
+  .card-back-title,
+  .card-back-text {
+    line-height: 1.4;
+  }
 }
 
 
@@ -713,15 +848,14 @@ section {
 }
 
 .balloon hr {
-  border: none; /* デフォルトのボーダーをリセット */
   border-top: 2px solid #E8B045;
   margin-block: 16px;
-  width: 100%; /* 幅を親要素の80%に設定 */
+  width: 100%;
 }
 
 @media screen and (max-width: 900px) {
   .voice {
-    padding-block: 80px 30px;
+    padding-block: 80px 40px;
   }
   .voice .voice-item {
     flex-direction: column-reverse;
@@ -733,19 +867,9 @@ section {
   }
 }
 .voice .inview-voice-item {
-  -webkit-animation: zoomin 0.6s forwards 0s 1 ease-out;
-          animation: zoomin 0.6s forwards 0s 1 ease-out;
+  animation: zoomin 0.6s forwards 0s 1 ease-out;
 }
-@-webkit-keyframes zoomin {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+
 @keyframes zoomin {
   0% {
     transform: scale(0.1);
@@ -918,6 +1042,97 @@ section {
 /* ---------------------------
   cta
   ---------------------------*/
+.cta {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-block:80px;
+  text-align: center;
+}
+.cta h3 {
+  margin-bottom: 40px;
+}
+.cta-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cta-button {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle farthest-corner at center,#E1F4F2  0%, #10C3AF 100%);
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  z-index: 1;
+}
+
+/* 放射状に広がるアニメーションのための擬似要素 */
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle farthest-corner at center, #E8B045 0%, #F5D076 100%); /* 黄色のグラデーション */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out;
+  z-index: -1;
+}
+
+.cta-button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.cta-button .initial-text {
+  opacity: 1;
+}
+
+.cta-button .hover-text {
+  opacity: 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* ホバー時のスタイル */
+.cta-button:hover {
+  transform: scale(1.2);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ホバー時に擬似要素を拡大 */
+.cta-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cta-button:hover .initial-text {
+  opacity: 0;
+}
+
+.cta-button:hover .hover-text {
+  opacity: 1;
+}
 
 
 /* ---------------------------
@@ -1098,7 +1313,7 @@ footer {
   main共通
   ---------------------------*/
   main {
-    padding: 0 40px;
+    padding: 0 16px;
   }
 
 
@@ -1109,7 +1324,11 @@ footer {
   /* ---------------------------
   guide
   ---------------------------*/
-  
+  .card-list {
+  padding-left: 20px;
+  margin-block: 40px 80px;
+  }
+
 
   /* event */
   .event,
@@ -1164,7 +1383,28 @@ footer {
   /* ---------------------------
   cta
   ---------------------------*/
+.cta {
+  font-size: 1.25rem;
+}
 
+.cta h3 {
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  width: 200px; /* 小さい画面ではボタンを小さく */
+  height: 200px;
+  font-size: 1rem;
+}
+
+.cta-button .hover-text {
+  font-size: 0.875rem; 
+}
+
+.cta-button:hover::before {
+  width: 240px;
+  height: 240px;
+}
 
   /* ---------------------------
   footer

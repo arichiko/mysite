@@ -62,9 +62,9 @@
     </header>
 
     <main>
-        <div class="backwave">
+        <!-- <div class="backwave">
             <img src="img/backwave.svg" alt="backwave">
-        </div>
+        </div> -->
         <!-- about section -->
         <section class="about" id="about">
             <div class="section-title">
@@ -128,6 +128,7 @@
                 <h2>GUIDE</h2>
                 <p>Metaleafでできること</p>
             </div>
+            <p class="flip-hint-text">カードをタップしよう！</p>
             <ul class="card-list">
                 <li class="card-item">
                     <div class="card">
@@ -139,9 +140,8 @@
                             <p class="card-back-title">名前の前に😢マークをつけて初心者専用部屋に行ってみよう！</p>
                             <img src="img/guide-back4.png" alt="初心者専用部屋">
                             <div class="card-back-text">
-                                <p><span>「初心者専用部屋」</span>に行くと、同じ境遇の仲間もでき、優しい先輩方が話しかけてくれるよ！</p>
-                                <a href="https://support.metalife.co.jp/welcome/beginner">
-                                    基本的な操作方法はこちら</a>
+                                <p><span>「初心者専用部屋」</span>に行くと、同じ境遇の仲間もでき、優しい先輩方が話しかけてくれるよ！<br>
+                                    基本的な操作方法は<a href="https://support.metalife.co.jp/welcome/beginner">こちら</a></p>
                             </div>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                             <img src="img/guide-front4.jpg" alt="困りごと解決したい人">
                         </div>
                         <div class="card-face card-back card-back-yellow">
-                            <p class="card-back-title">「初心者交流会」を活用しよう！</p>
+                            <p class="card-back-title">初心者交流会を活用しよう！</p>
                             <img src="img/guide-back1.png" alt="初心者交流会">
                             <div class="card-back-text">
                                 <p class="card-back-text-title">初心者交流会</p>
@@ -203,7 +203,7 @@
                             <img src="img/guide-front5.jpg" alt="困ってる人のアイコン">
                         </div>
                         <div class="card-face card-back card-back-pink">
-                            <p class="card-back-title">レベル別質問 部屋を活用しよう！</p>
+                            <p class="card-back-title">レベル別質問部屋を活用しよう！</p>
                             <img src="img/guide-back5.png" alt="レベル別質問部屋">
                             <div class="card-back-text">
                                 <p class="card-back-text-title">レベル別質問部屋</p>
@@ -231,6 +231,7 @@
                     </div>
                 </li>
             </ul>
+            
 
             <div class="event">
 
@@ -291,56 +292,58 @@
             </div>
 
         </section>
-        <section class="voice wrapper" id="voice">
+        <section class="voice" id="voice">
             <div class="section-title">
                 <h2>VOICE</h2>
                 <p>参加者の声</p>
             </div>
-            <div class="voice-item voice-left">
-                <div class="entrant">
-                    <img src="img/voice1.jpg" alt="参加者のアイコン">
+            <div class="wrapper">
+                <div class="voice-item voice-left">
+                    <div class="entrant">
+                        <img src="img/voice1.png" alt="参加者のアイコン">
+                    </div>
+                    <div class="balloon">
+                        <p class="user-profile">Aさん（20代・女性/会社員）</p>
+                        <hr>
+                        <p class="balloon-text">メタリーフでは、同じように頑張る仲間がいるから「自分だけじゃない」と思えます。<br>
+                            何気ない会話が励みとなり、やる気が出ない時でもまた前向きに頑張れます。
+                        </p>
+                    </div>
                 </div>
-                <div class="balloon">
-                    <p class="user-profile">Aさん（20代・女性/会社員）</p>
-                    <hr>
-                    <p class="balloon-text">メタリーフでは、同じように頑張る仲間がいるから「自分だけじゃない」と思えます。<br>
-                        何気ない会話が励みとなり、やる気が出ない時でもまた前向きに頑張れます。
-                    </p>
+                <div class="voice-item voice-right">
+                    <div class="balloon">
+                        <p class="user-profile">Bさん（30代・男性 / 会社員）</p>
+                        <hr>
+                        <p class="balloon-text">孤独だったけど、メタリーフで同じように学んでる仲間ができた。<br>
+                            一緒に作業したり、進捗をシェアしたり。<br>
+                            ひとりじゃないってだけで、勉強のモチベが全然違います。</p>
+                    </div>
+                    <div class="entrant">
+                        <img src="img/voice2.png" alt="参加者のアイコン">
+                    </div>
                 </div>
-            </div>
-            <div class="voice-item voice-right">
-                <div class="balloon">
-                    <p class="user-profile">Bさん（30代・男性 / 会社員）</p>
-                    <hr>
-                    <p class="balloon-text">孤独だったけど、メタリーフで同じように学んでる仲間ができた。<br>
-                        一緒に作業したり、進捗をシェアしたり。<br>
-                        ひとりじゃないってだけで、勉強のモチベが全然違います。</p>
+                <div class="voice-item voice-left">
+                    <div class="entrant">
+                        <img src="img/voice3.png" alt="参加者のアイコン">
+                    </div>
+                    <div class="balloon">
+                        <p class="user-profile">Cさん（30代・女性 / 育休中）</p>
+                        <hr>
+                        <p class="balloon-text">育児と仕事で時間のやりくりが大変だけど、メタリーフには<br>
+                            “同じ立場”の仲間がいて「みんなどうしてる？」って気軽に相談できます。<br>
+                            時間管理のヒントや、学習の工夫とか、リアルな声が本当に助かってます。</p>
+                    </div>
                 </div>
-                <div class="entrant">
-                    <img src="img/voice2.jpg" alt="参加者のアイコン">
-                </div>
-            </div>
-            <div class="voice-item voice-left">
-                <div class="entrant">
-                    <img src="img/voice3.jpg" alt="参加者のアイコン">
-                </div>
-                <div class="balloon">
-                    <p class="user-profile">Cさん（30代・女性 / 育休中）</p>
-                    <hr>
-                    <p class="balloon-text">育児と仕事で時間のやりくりが大変だけど、メタリーフには<br>
-                        “同じ立場”の仲間がいて「みんなどうしてる？」って気軽に相談できます。<br>
-                        時間管理のヒントや、学習の工夫とか、リアルな声が本当に助かってます。</p>
-                </div>
-            </div>
-            <div class="voice-item voice-right">
-                <div class="balloon">
-                    <p class="user-profile">Dさん（20代・男性 / 大学生）</p>
-                    <hr>
-                    <p class="balloon-text">技術のことで行き詰まったとき、誰かに相談できるって心強い。<br>
-                        バグの話もできて“ひとりで抱え込まなくていい”場所だなって感じてます。</p>
-                </div>
-                <div class="entrant">
-                    <img src="img/voice4.jpg" alt="参加者のアイコン">
+                <div class="voice-item voice-right">
+                    <div class="balloon">
+                        <p class="user-profile">Dさん（20代・男性 / 大学生）</p>
+                        <hr>
+                        <p class="balloon-text">技術のことで行き詰まったとき、誰かに相談できるって心強い。<br>
+                            バグの話もできて“ひとりで抱え込まなくていい”場所だなって感じてます。</p>
+                    </div>
+                    <div class="entrant">
+                        <img src="img/voice4.png" alt="参加者のアイコン">
+                    </div>
                 </div>
             </div>
         </section>
@@ -395,8 +398,14 @@
             </div>
         </section>
 
-        <div class="cta">
-
+        <div class="cta wrapper">
+            <h3>メタリーフで、新しい毎日を始めよう。</h3>
+            <div class="cta-content">
+                <a href="contact.html" class="cta-button">
+                    <span class="initial-text">今すぐ始める</span>
+                    <span class="hover-text">お問い合わせはこちらから</span>
+                </a>
+            </div>
         </div>
 
     </main>
