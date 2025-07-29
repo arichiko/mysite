@@ -593,7 +593,7 @@ section {
 /* ---------------------------
   guide: SP表示時のカード回転ヒント
 ---------------------------*/
-@media screen and (max-width: 800px) { /* スマホやタブレット縦表示のブレークポイントに合わせて調整 */
+@media screen and (max-width: 900px) { /* スマホやタブレット縦表示のブレークポイントに合わせて調整 */
     .card-item:first-of-type .card {
         animation: subtle-flip 2.5s ease-in-out infinite;
         transform-origin: center center;
@@ -625,8 +625,6 @@ section {
         left: 50%;
         transform: translateX(-50%);
         font-size: 0.75rem;
-        color: #fff;
-        background-color: #333; /* 暗めの背景色 */
         padding: 4px 8px;
         border-radius: 4px;
         opacity: 0;
@@ -635,8 +633,8 @@ section {
         pointer-events: none;
         z-index: 10;
         text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
+
 
     /* フェードイン・アウトアニメーション */
     @keyframes fadeInOut {
@@ -985,8 +983,8 @@ section {
 
 
 /*---------------------------
-   q&a
-   ---------------------------*/
+  q&a
+---------------------------*/
 /* アコーディオン */
 .accordion{
   max-width: 900px;
@@ -1119,7 +1117,7 @@ section {
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle farthest-corner at center, #E8B045 0%, #F5D076 100%); /* 黄色のグラデーション */
+  background: radial-gradient(circle farthest-corner at center, #FF8C00 0%, #F5D076 50%, #FFF 100%); /* 黄色のグラデーション */
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease-out, height 0.3s ease-out;
@@ -1143,7 +1141,6 @@ section {
 .cta-button .hover-text {
   opacity: 0;
   color: #fff;
-  font-size: 1rem;
 }
 
 /* ホバー時のスタイル */
