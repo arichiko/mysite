@@ -290,7 +290,7 @@ main {
   padding: 0 80px;
   position: relative;
 
-  background-image: url('../img/backwave.svg');
+  background-image: url('../img/backwave-deep.svg');
   background-repeat: repeat-y; /* 縦方向にリピートさせる（必要であれば） */
   background-position: center top; /* 初期位置を中央の上部に設定 */
   background-size: 40vw auto; /* 幅を40vwに設定し、高さは自動調整 */
@@ -719,9 +719,10 @@ section {
   }
 }
 
-
-/* event */
-.event {
+ /* ---------------------------
+  event
+  ---------------------------*/
+.event-container {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -743,7 +744,6 @@ section {
 .event-card {
   width: 50%;
   /* height: 200vh;
-
   position: relative; */
 }
 
@@ -751,6 +751,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 8px;
 
   height: 450px;
 }
@@ -760,7 +761,7 @@ section {
   max-width: 600px;
   border-radius: 20px;
   padding: 10px;
-  margin: 0 0 32px 16px;
+  margin: 8px 0 32px 16px;
   box-shadow:0px 3px 8px rgba(0,0,0,0.24);
 }
 
@@ -768,10 +769,9 @@ section {
   border: 10px solid #5FA4FF;
   background-color: #5FA4FF;
   position: sticky;
-  top: 0;
+  top: 0px;
 }
   
-
 .orange-card {
   border: 10px solid #FFA787;
   background-color: #FFA787;
@@ -1179,9 +1179,22 @@ footer {
 /* ---------------------------
   contact
   ---------------------------*/
+  /* .contact-header {
+    position: static;
+    height: auto;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 24px;
+    position: relative;
+    z-index: 50;
+  } */
+
 .contact-container {
   position: absolute;
-  top: -80vh;
+  top: -70vh;
   left: 0;
   width: 100%;
   padding: 0 80px;
@@ -1204,6 +1217,26 @@ footer {
   max-width: 900px;
   margin: 0 auto;
   padding-top: 0;
+}
+
+.contact .section-title img{
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: -120px;
+  left: -20px;
+}
+.contact .section-title h2 {
+  position: absolute;
+  top: -90px;
+  left: 25px;
+  text-shadow:1px 1px 1px rgba(51, 51, 51, 0.5);
+}
+
+.contact .section-title p{
+  top: -55px;
+  left: 25px;
+  text-shadow:1px 1px 1px rgba(51, 51, 51, 0.5);
 }
 
 .contact dl {
@@ -1260,10 +1293,11 @@ footer {
 
 .contact-avatar {
   display: flex;
+  justify-content: center;
   gap: 5px;
-  position: relative;
-  top: -80px;
-  left: 50px;
+  /* position: relative;
+  top: 50%;
+  left: 50%; */
 
 }
 
@@ -1294,14 +1328,29 @@ footer {
   top: 3px;
 }
 
+.contact-copyright {
+  font-size: 8px;
+  text-align: center;
+  margin: 32px 0 16px;
+}
 
-
+.contact-footer {
+  display: none;
+  /* font-size: 8px;
+  text-align: center;
+  margin-bottom: 16px;
+  position: absolute;
+  top: 190vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #DBF6F3; */
+}
 
 /* ---------------------------
-  レスポンシブ対応
+  レスポンシブ対応（768〜900px）
   ---------------------------*/
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 900px) {
   /* ---------------------------
   header
  ---------------------------- */
@@ -1361,9 +1410,10 @@ footer {
   margin-block: 40px 80px;
   }
 
-
-  /* event */
-  .event,
+ /* ---------------------------
+  event
+  ---------------------------*/
+  .event-container,
   .event-card-upper {
     flex-direction: column;
   }
@@ -1375,8 +1425,13 @@ footer {
     width: 100%;
   }
 
-  .event-card li {
-    margin: 0 0 32px 0;
+  .event-texts {
+    margin-bottom: 80px;
+    position: static;
+  }
+
+  .event-card-spacer {
+    margin-top: 50px;
   }
 
   .event-card-left {
@@ -1389,7 +1444,6 @@ footer {
   .card-number {
     font-size: 48px;
   }
-
 
   .card-left-title {
     padding: 0 0 0 10px;
@@ -1445,13 +1499,14 @@ footer {
   /* ---------------------------
   contact
   ---------------------------*/
+  
   .contact {
     padding: 0 40px;
   }
 
   .contact-container {
     padding: 0 40px;
-    top: -90vh
+    top: -70vh
   }
 
 .contact dl {
@@ -1461,13 +1516,32 @@ footer {
 
 .contact dt {
   width: 100%;
+  margin-bottom :16px; 
 }
 
 .contact dd {
   width: 100%;
+  margin: 0 10px 24px;
 }
 
   .contact dd ul:first-of-type {
     flex-direction: column;
   }
+
+  .contact-avatar {
+    top: 0px;
+    left: 85px;
+  
+  }
+
 }
+
+
+/* ---------------------------
+  レスポンシブ対応（〜768px）
+  ---------------------------*/
+
+  @media screen and (max-width: 768px) {
+  
+  
+  }
