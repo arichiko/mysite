@@ -83,32 +83,68 @@ document.addEventListener('DOMContentLoaded', () => {
 /*=================================================
  event
 ===================================================*/
-$(function () {
-  let cards = gsap.utils.toArray(".event-card-wrapper");
+// $(function () {
+//   let cards = gsap.utils.toArray(".event-card-wrapper");
 
-  let stickDistance = '100px';
+//   let stickDistance = '100px';
 
-  let lastCardST = ScrollTrigger.create({
-    trigger: cards[cards.length - 1],
-    start: "bottom bottom"
-  });
+//   let lastCardST = ScrollTrigger.create({
+//     trigger: cards[cards.length - 1],
+//     start: "bottom bottom"
+//   });
 
-  cards.forEach((card, index) => {
+//   cards.forEach((card, index) => {
 
-    ScrollTrigger.create({
-      trigger: card,
-      start: "top top",
-      end: () => "+=450",
-      // end: nextCard ? "top top" : "bottom top",
-      // end: () => lastCardST.start + stickDistance,
-      endTrigger: cards[index + 1] || card, // 次のカードがあれば、それまでで終了
-    // end: cards[index + 1] ? "top center" : "bottom center", // 最後だけ特別
-      pin: true,
-      pinSpacing: false,
-      ease: "none",
-      toggleActions: "restart none none reverse"
+//     ScrollTrigger.create({
+//       trigger: card,
+//       start: "top top",
+//       end: () => "+=450",
+//       endTrigger: cards[index + 1] || card, // 次のカードがあれば、それまでで終了
+//       pin: true,
+//       pinSpacing: false,
+//       ease: "none",
+//       toggleActions: "restart none none reverse"
+//     });
+//   });
+// });
+gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.matchMedia({
+
+  // 💻 PC表示（幅801px以上）
+  "(min-width: 856px)": function () {
+    const cards = gsap.utils.toArray(".event-card-wrapper");
+
+    cards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top top",
+        endTrigger: cards[index + 1] || card,
+        end: "+=450",
+        pin: true,
+        pinSpacing: false,
+        toggleActions: "restart none none reverse",
+      });
     });
-  });
+  },
+
+  // 📱 モバイル表示（幅800px以下）
+  "(max-width: 856px)": function () {
+    const cards = gsap.utils.toArray(".event-card-wrapper");
+
+    cards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top+=300 top", // ← テキスト下に出てくるように調整
+        endTrigger: cards[index + 1] || card,
+        end: "+=400",
+        pin: true,
+        pinSpacing: false,
+        toggleActions: "restart none none reverse",
+      });
+    });
+  }
+
 });
 
 /*=================================================
