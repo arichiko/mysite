@@ -287,18 +287,9 @@ header {
   main共通
   ---------------------------*/
 main {
+  background: url('../img/backwave-deep.svg') center top / 40vw auto repeat-y fixed;
   padding: 0 80px;
   position: relative;
-
-  background-image: url('../img/backwave-long.svg');
-  background-repeat: repeat-y;
-  /* 縦方向にリピートさせる（必要であれば） */
-  background-position: center top;
-  /* 初期位置を中央の上部に設定 */
-  background-size: 40vw auto;
-  /* 幅を40vwに設定し、高さは自動調整 */
-  background-attachment: fixed;
-  /* ★ビューポートに背景を固定する★ */
 }
 
 section {
@@ -310,26 +301,9 @@ section {
   margin: 0 auto;
 }
 
-/* .backwave {
-  height: 3000px;
-  margin: 0 auto;
-  overflow-y: hidden;
-  position: absolute;
-  top: -5%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: -10;
-  pointer-events: none;
-} */
 
-.backwave img {
-  height: 3000px;
-  /* height: 100%; */
-  width: 40vw;
 
-}
-
-.section-title {
+.section-title{
   position: relative;
 }
 
@@ -366,10 +340,11 @@ section {
 
 .about-text {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .about-inr {
+    padding-top: 40px;
   margin: 0 auto;
   max-width: 1000px;
 }
@@ -423,13 +398,26 @@ section {
     padding-bottom: 30px;
   }
 
-  .point-content {
+  .point-block{
+    width: 65%;
+  }
+  .point-content{
     width: 80%;
   }
 
   .point-content h3 {
     text-align: center;
     font-size: 20px;
+  }
+}
+  @media screen and (max-width: 600px) {
+
+  .point-content{
+    width: 90%;
+  }
+  .point-content h3 {
+    text-align: center;
+    font-size: 18px;
   }
 
 }
@@ -440,66 +428,68 @@ section {
 .guide {
   width: 100%;
   overflow-x: hidden;
-  min-height: 1200px;
+}
+
+.flip-hint-text {
+    display: none;
+    width: 100%;
+    margin-top: 24px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #F6C361;
+    color: #fff;
+    font-size: 0.75rem;
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .card-list {
   display: flex;
   flex-wrap: nowrap;
-  width: 100%;
-  perspective: 1000px;
-  /* カードの3D効果 */
-  padding-left: 80px;
-  margin-block: 40px 120px;
   align-items: center;
+  width: 100%;
+  perspective: 1000px; /* カードの3D回転効果に必要 */
+  padding-left: 80px;
+  margin-top: 40px;
   box-sizing: border-box;
 }
 
 .card-item {
-  flex-shrink: 0;
-  /*パネルが縮まないようにする */
-  width: 30%;
-  aspect-ratio: 3 / 4;
-  position: relative;
-  margin-right: 40px;
-  min-width: 330px;
-  max-width: 350px;
+    flex-shrink: 0; /* カードアイテムが縮まないようにする */
+    min-width: 330px;
+    max-width: 350px;
+    aspect-ratio: 3 / 4;
+    margin-right: 40px;
+    position: relative;
 }
 
+@media screen and (min-width: 901px) {
+  .card-item:hover .card {
+    transform: rotateY(180deg);
+  }
+}
 
-
-/* --- ホバーで裏返るカードのスタイリング--- */
 .card {
   width: 100%;
   height: 100%;
   position: absolute;
-  transform-style: preserve-3d;
-  /* 子要素の3D変換を保持 */
+  transform-style: preserve-3d; /* 子要素（表面・裏面）の3D変換を保持 */
   transition: transform 0.6s ease-in-out;
   cursor: pointer;
   border-radius: 20px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .card-item:hover .card {
-    transform: rotateY(180deg);
-  }
-}
-
-/* タッチデバイス用: */
 .card.is-flipped {
   transform: rotateY(180deg);
 }
-
-
 
 .card-face {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  /* 裏面になったときに非表示にする */
+  backface-visibility: hidden; /* 裏面になったときに非表示にする */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -521,35 +511,18 @@ section {
   display: block;
 }
 
-.card-front-blue {
-  border: solid 4px #5FA4FF;
-}
-
-.card-front-orange {
-  border: solid 4px #FFA787;
-}
-
-.card-front-green {
-  border: solid 4px #5FCE8F;
-}
-
-.card-front-yellow {
-  border: solid 4px #EFC244;
-}
-
-.card-front-pink {
-  border: solid 4px #EA3676;
-}
-
-.card-front-purple {
-  border: solid 4px #9957B8;
-}
+.card-front-blue { border: solid 4px #5FA4FF; }
+.card-front-orange { border: solid 4px #FFA787; }
+.card-front-green { border: solid 4px #5FCE8F; }
+.card-front-yellow { border: solid 4px #EFC244; }
+.card-front-pink { border: solid 4px #EA3676; }
+.card-front-purple { border: solid 4px #9957B8; }
 
 .card-back {
   color: #fff;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* 裏面は最初から180度回転させておく */
   justify-content: flex-start;
-  padding: 10%;
+  padding: 24px;
 }
 
 .card-back-title {
@@ -569,214 +542,22 @@ section {
   color: #333;
 }
 
-.card-back-text span,
-.card-back-text a {
+.card-back-blue { background-color: #5FA4FF; }
+.card-back-orange { background-color: #FFA787; }
+.card-back-green { background-color: #5FCE8F; }
+.card-back-yellow { background-color: #EFC244; }
+.card-back-pink { background-color: #EA3676; }
+.card-back-purple { background-color: #9957B8; }
+
+.card-back-blue .card-back-text span,
+.card-back-blue .card-back-text a {
   color: #5FA4FF;
 }
-
-.card-back-orange .card-back-text-title {
-  color: #FFA787;
-}
-
-.card-back-green .card-back-text-title {
-  color: #5FCE8F;
-}
-
-.card-back-yellow .card-back-text-title {
-  color: #EFC244;
-}
-
-.card-back-pink .card-back-text-title {
-  color: #EA3676;
-}
-
-.card-back-purple .card-back-text-title {
-  color: #9957B8;
-}
-
-.card-back-blue {
-  background-color: #5FA4FF;
-}
-
-.card-back-orange {
-  background-color: #FFA787;
-}
-
-.card-back-green {
-  background-color: #5FCE8F;
-}
-
-.card-back-yellow {
-  background-color: #EFC244;
-}
-
-.card-back-pink {
-  background-color: #EA3676;
-}
-
-.card-back-purple {
-  background-color: #9957B8;
-}
-
-/* ---------------------------
-  guide: SP表示時のカード回転ヒント
----------------------------*/
-@media screen and (max-width: 800px) {
-
-  /* スマホやタブレット縦表示のブレークポイントに合わせて調整 */
-  .card-item:first-of-type .card {
-    animation: subtle-flip 2.5s ease-in-out infinite;
-    transform-origin: center center;
-  }
-
-  /* アニメーションのキーフレーム */
-  @keyframes subtle-flip {
-
-    0%,
-    100% {
-      transform: rotateY(0deg);
-    }
-
-    10% {
-      transform: rotateY(8deg);
-      /* 少しだけ回す */
-    }
-
-    20% {
-      transform: rotateY(-6deg);
-      /* 逆方向に少し戻す */
-    }
-
-    30% {
-      transform: rotateY(0deg);
-    }
-
-    60% {
-      transform: rotateY(0deg);
-    }
-  }
-
-  /* ヒントテキストのスタイル */
-  .flip-hint-text {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    color: #fff;
-    background-color: #333;
-    /* 暗めの背景色 */
-    padding: 4px 8px;
-    border-radius: 4px;
-    opacity: 0;
-    animation: fadeInOut 5s ease-out forwards;
-    animation-delay: 1.5s;
-    pointer-events: none;
-    z-index: 10;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  /* フェードイン・アウトアニメーション */
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-    }
-
-    15% {
-      opacity: 1;
-    }
-
-    85% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-      display: none;
-    }
-  }
-}
-
-/* デスクトップ（ホバー可能なデバイス）ではヒントを非表示にする */
-@media (hover: hover) {
-  .card-item:first-child .card {
-    animation: none;
-    /* デスクトップではアニメーションを無効化 */
-  }
-
-  .flip-hint-text {
-    display: none;
-    /* デスクトップではヒントテキストを完全に非表示 */
-  }
-}
-
-@media screen and (max-width: 768px) {
-  main {
-    padding: 0 24px;
-  }
-
-  .card-list {
-    padding-inline: 8px;
-    margin-block: 40px 80px;
-  }
-
-  .card-item {
-    min-width: 260px;
-    max-width: 280px;
-    margin-right: 16px;
-  }
-
-  .card-face {
-    padding: 16px;
-  }
-
-  .card-back {
-    padding: 5%;
-  }
-
-  .card-back img {
-    margin-block: 8px;
-  }
-
-  .card-back-text {
-    padding: 4px 8px;
-  }
-
-  .card-back-title,
-  .card-back-text {
-    line-height: 1.6;
-    font-size: 0.875rem;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .card-list {
-    padding-inline: 20px 40px;
-    margin-block: 40px 60px;
-  }
-
-  .card-item {
-    min-width: 220px;
-    max-width: 260px;
-    margin-right: 8px;
-  }
-
-  .card-face {
-    padding: 16px;
-  }
-
-  .card-front img {
-    max-width: 80px;
-    margin-top: 24px;
-    display: block;
-  }
-
-  .card-back-title,
-  .card-back-text {
-    line-height: 1.4;
-  }
-}
+.card-back-orange .card-back-text-title { color: #FFA787; }
+.card-back-green .card-back-text-title { color: #5FCE8F; }
+.card-back-yellow .card-back-text-title { color: #EFC244; }
+.card-back-pink .card-back-text-title { color: #EA3676; }
+.card-back-purple .card-back-text-title { color: #9957B8; }
 
 /* ---------------------------
   event
@@ -786,6 +567,7 @@ section {
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1000px;
+  padding-top: 40px;
 }
 
 .event-texts {
@@ -921,14 +703,15 @@ section {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 60px;
+  padding-top: 40px;
 }
 
-.voice .voice-item .entrant img {
+.entrant img {
   width: 120px;
 }
 
 
-.voice .voice-item .balloon {
+.balloon {
   width: 70%;
   margin-bottom: 40px;
   padding: 20px;
@@ -936,10 +719,12 @@ section {
   border-radius: 10px;
   box-sizing: border-box;
   position: relative;
+  opacity: 0;
+  transform: scale(0.1);
 }
 
-.voice .voice-item .balloon .name {
-  font-size: 0.75rem;
+.balloon .user-profile{
+  font-size: 14px;
 }
 
 .balloon hr {
@@ -948,27 +733,11 @@ section {
   width: 100%;
 }
 
-@media screen and (max-width: 900px) {
-  .voice {
-    padding-block: 80px 40px;
-  }
-
-  .voice .voice-item {
-    flex-direction: column-reverse;
-    align-items: center;
-    margin-bottom: 40px;
-  }
-
-  .voice .voice-item .balloon {
-    width: 100%;
-  }
+.balloon.inView-balloon {
+  animation: zoomIn 0.6s forwards 0s 1 ease-out;
 }
 
-.voice .inview-voice-item {
-  animation: zoomin 0.6s forwards 0s 1 ease-out;
-}
-
-@keyframes zoomin {
+@keyframes zoomIn {
   0% {
     transform: scale(0.1);
     opacity: 0;
@@ -980,15 +749,13 @@ section {
   }
 }
 
-.voice .voice-left {
+.voice-left {
   justify-content: flex-start;
 }
-
-.voice .voice-left .balloon {
+.voice-left .balloon {
   margin-left: 25px;
 }
-
-.voice .voice-left .balloon::before {
+.voice-left .balloon::before {
   content: "";
   position: absolute;
   top: 60%;
@@ -999,33 +766,13 @@ section {
   z-index: 2;
 }
 
-@media screen and (max-width: 900px) {
-  .voice .voice-left {
-    flex-direction: column-reverse;
-  }
-
-  .voice .voice-left .balloon {
-    margin-left: 0;
-  }
-
-  .voice .voice-left .balloon::before {
-    top: 100%;
-    left: 0;
-    margin-left: calc(50% - 15px);
-    border: 15px solid transparent;
-    border-top: 15px solid #E1F4F2;
-  }
-}
-
-.voice .voice-right {
+.voice-right {
   justify-content: flex-end;
 }
-
-.voice .voice-right .balloon {
+.voice-right .balloon {
   margin-right: 25px;
 }
-
-.voice .voice-right .balloon::before {
+.voice-right .balloon::before {
   content: "";
   position: absolute;
   top: 60%;
@@ -1036,32 +783,14 @@ section {
   z-index: 2;
 }
 
-@media screen and (max-width: 900px) {
-  .voice .voice-right {
-    flex-direction: column;
-  }
-
-  .voice .voice-right .balloon {
-    margin-right: 0;
-  }
-
-  .voice .voice-right .balloon::before {
-    top: 100%;
-    right: 0;
-    margin-right: calc(50% - 15px);
-    border: 15px solid transparent;
-    border-top: 15px solid #E1F4F2;
-  }
-}
-
-
 /*---------------------------
-   q&a
-   ---------------------------*/
+  q&a
+---------------------------*/
 /* アコーディオン */
 .accordion {
   max-width: 900px;
   margin: 0 auto;
+  padding-top: 40px;
 }
 
 .accordion-item {
@@ -1152,14 +881,24 @@ section {
   cta
   ---------------------------*/
 .cta {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding-block: 80px;
-  text-align: center;
+  padding-block:80px;
 }
 
-.cta h3 {
+.cta-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cta-text img {
+  width: 320px;
+  height: auto;
 }
 
 .cta-content {
@@ -1170,12 +909,12 @@ section {
 }
 
 .cta-button {
-  width: 250px;
-  height: 250px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   background: radial-gradient(circle farthest-corner at center, #E1F4F2 0%, #10C3AF 100%);
   color: #333;
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   position: relative;
@@ -1190,18 +929,13 @@ section {
   z-index: 1;
 }
 
-/* 放射状に広がるアニメーションのための擬似要素 */
 .cta-button::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle farthest-corner at center, #E8B045 0%, #F5D076 100%);
-  /* 黄色のグラデーション */
+  background: radial-gradient(circle farthest-corner at center, #FF8C00 0%, #F5D076 50%, #FFF 100%);
   border-radius: 50%;
-  transform: translate(-50%, -50%);
   transition: width 0.3s ease-out, height 0.3s ease-out;
   z-index: -1;
 }
@@ -1223,16 +957,14 @@ section {
 .cta-button .hover-text {
   opacity: 0;
   color: #fff;
-  font-size: 1rem;
 }
 
-/* ホバー時のスタイル */
+
 .cta-button:hover {
   transform: scale(1.2);
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* ホバー時に擬似要素を拡大 */
 .cta-button:hover::before {
   width: 300px;
   height: 300px;
@@ -1427,6 +1159,7 @@ footer {
   background-color: #DBF6F3; */
 }
 
+
 /* ---------------------------
   レスポンシブ対応（768〜900px）
   ---------------------------*/
@@ -1487,10 +1220,9 @@ footer {
   /* ---------------------------
   guide
   ---------------------------*/
-  .card-list {
-    padding-left: 20px;
-    margin-block: 40px 80px;
-  }
+ .flip-hint-text {
+      display: block;
+    }
 
   /* ---------------------------
   event
@@ -1555,7 +1287,43 @@ footer {
   /* ---------------------------
   voice
   --------------------------- */
+ .voice {
+    padding-block: 80px 40px;
+  }
+  .voice .voice-item {
+    margin-bottom: 40px;
+  }
+  .balloon {
+    width: 100%;
+  }
 
+  .voice-left {
+    flex-direction: column-reverse;
+  }
+  .voice-left .balloon {
+    margin-left: 0;
+  }
+  .voice-left .balloon::before {
+    top: 100%;
+    left: 0;
+    margin-left: calc(50% - 15px);
+    border: 15px solid transparent;
+    border-top: 15px solid #E1F4F2;
+  }
+
+  .voice-right {
+    flex-direction: column;
+  }
+  .voice-right .balloon {
+    margin-right: 0;
+  }
+  .voice-right .balloon::before {
+    top: 100%;
+    right: 0;
+    margin-right: calc(50% - 15px);
+    border: 15px solid transparent;
+    border-top: 15px solid #E1F4F2;
+  }
   /*---------------------------
    q&a
    ---------------------------*/
@@ -1563,30 +1331,29 @@ footer {
 
   /* ---------------------------
   cta
-  ---------------------------*/
-  .cta {
-    font-size: 1.25rem;
-  }
+  --------------------------*/
+.cta {
+  padding-block: 60px;
+}
 
-  .cta h3 {
-    margin-bottom: 20px;
-  }
+.cta-text {
+  margin-bottom: 20px;
+}
 
-  .cta-button {
-    width: 200px;
-    /* 小さい画面ではボタンを小さく */
-    height: 200px;
-    font-size: 1rem;
-  }
-
-  .cta-button .hover-text {
-    font-size: 0.875rem;
-  }
-
-  .cta-button:hover::before {
+.cta-text img {
     width: 240px;
-    height: 240px;
   }
+
+.cta-button {
+  width: 220px;
+  height: 220px;
+  font-size: 16px;
+}
+
+.cta-button:hover::before {
+  width: 260px;
+  height: 260px;
+}
 
   /* ---------------------------
   footer
@@ -1624,42 +1391,137 @@ footer {
     flex-direction: column;
   }
 
+  .contact-avatar {
+    top: 0px;
+    left: 85px;
+  }
+
 }
 
 
 /* ---------------------------
-  レスポンシブ対応（〜768px）
+  レスポンシブ対応（400〜768px）
   ---------------------------*/
 
-@media screen and (max-width: 768px) {
-
-  /* ---------------------------
-  header
- ---------------------------- */
-  .main-message img {
-    width: 60px;
+  @media screen and (max-width: 768px) {
+    
+    /* ---------------------------
+    guide
+    ---------------------------*/
+     .card-list {
+    padding-inline: 8px;
+    margin-block: 40px 80px;
   }
 
-  .main-message a,
-  .main-message p {
+  .card-item {
+    min-width: 260px;
+    max-width: 280px;
+    margin-right: 16px;
+  }
+
+  .card-face, .card-back {
+    padding: 16px;
+  }
+
+  .card-back-text {
+    padding: 4px 8px;
+  }
+
+  .card-back-title,
+  .card-back-text {
+    line-height: 1.6;
+    font-size: 14px;
+  }
+    /* ---------------------------
+    cta
+    ---------------------------*/
+.cta {
+    padding-block: 40px;
+  }
+
+  .cta-text {
     font-size: 20px;
   }
 
-  .main-message a::before {
-    width: 105px;
-    height: 3px;
-    background-color: #54A296;
-    bottom: 0;
-    left: -10px;
-    transition: all 0.3s;
+  .cta-text img {
+    width: 220px;
   }
 
-  /* ---------------------------
-  contact
-  ---------------------------*/
+  .cta-button {
+    width: 180px;
+    height: 180px;
+  }
 
-  .contact-container {
-    padding: 0 20px;
-    top: -70vh
+  .cta-button:hover::before {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+
+/* ---------------------------
+  レスポンシブ対応（〜400px）
+---------------------------*/
+@media screen and (max-width: 400px) {
+
+/* ---------------------------
+  guide
+---------------------------*/
+ .card-list {
+    padding-inline: 20px 40px;
+    margin-block: 40px;
+  }
+
+  .card-item {
+    min-width: 220px;
+    max-width: 260px;
+    margin-right: 8px;
+  }
+
+  .card-face {
+    padding: 16px;
+  }
+
+
+  .card-front img {
+    max-width: 80px;
+    margin-top: 24px;
+    display: block;
+  }
+
+  .card-back-title,
+  .card-back-text {
+    line-height: 1.4;
+  }
+
+  .card-back img {
+  margin-block: 8px;
+  }
+
+/* ---------------------------
+  cta
+---------------------------*/
+.cta {
+    padding-block: 32px;
+  }
+
+  .cta-text {
+    font-size: 16px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .cta-text img {
+    width: 160px;
+  }
+
+  .cta-button {
+    width: 160px;
+    height: 160px;
+  }
+
+  .cta-button:hover::before {
+    width: 200px;
+    height: 200px;
   }
 }
