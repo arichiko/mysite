@@ -37,47 +37,34 @@ gsap.to(sections, {
   }
 });
 
+
 /*=================================================
 //guide　sp時カードのクリックイベント
 ===================================================*/
-
 
 document.addEventListener('DOMContentLoaded', () => {
    // 全てのカードアイテムを取得
    const cardItems = document.querySelectorAll('.card-item');
 
-   // タッチデバイスかどうかを判定する関数
-   const isTouchDevice = () => {
-       return ('ontouchstart' in window) ||
-              (navigator.maxTouchPoints > 0) ||
-              (navigator.msMaxTouchPoints > 0);
-   };
-
-   if (isTouchDevice()) {
-       // タッチデバイスの場合
-       cardItems.forEach(cardItem => {
-           const card = cardItem.querySelector('.card');
-           
-           // クリックイベントリスナーを追加
-           card.addEventListener('click', () => {
-               // 'is-flipped' クラスをトグルする (あれば削除、なければ追加)
-               card.classList.toggle('is-flipped');
-           });
-
-           // カードの裏面をクリックしたときに、リンクが反応するように考慮
-           // 例えば、card-back-text 内の a タグがクリックされた場合は、カードを裏返さない
-           const cardBackText = card.querySelector('.card-back-text');
-           if (cardBackText) {
-               cardBackText.addEventListener('click', (e) => {
-                   e.stopPropagation(); // イベントのバブリングを停止
-                   // ここでリンクのデフォルト動作（ページ遷移）は維持される
-               });
-           }
+   // タッチデバイス判定をせずに、常にクリックイベントを設定する
+   cardItems.forEach(cardItem => {
+       const card = cardItem.querySelector('.card');
+       
+       // クリックイベントリスナーを追加
+       card.addEventListener('click', () => {
+           // 'is-flipped' クラスをトグルする (あれば削除、なければ追加)
+           card.classList.toggle('is-flipped');
        });
-   } else {
-       // デスクトップ（ホバー可能なデバイス）の場合、JavaScriptでの操作は不要
-       // CSSの @media (hover: hover) で制御されるため
-   }
+
+       // カードの裏面をクリックしたときに、リンクが反応するように考慮
+       const cardBackText = card.querySelector('.card-back-text');
+       if (cardBackText) {
+           cardBackText.addEventListener('click', (e) => {
+               e.stopPropagation(); // イベントのバブリングを停止
+               // ここでリンクのデフォルト動作（ページ遷移）は維持される
+           });
+       }
+   });
 });
 
 /*=================================================
@@ -150,35 +137,14 @@ ScrollTrigger.matchMedia({
 /*=================================================
 voice
 ===================================================*/
-$(window).scroll(function () {
-  $(".slide-left").each(function () {
-    var scroll = $(window).scrollTop();
-    var target = $(this).offset().top;
-    var windowHeight = $(window).height();
-    if (scroll > target - windowHeight + $(this).outerHeight()) {
-      $(this).addClass("inview-slide-left");
-    }
-  });
-});
-
-$(window).scroll(function () {
-  $(".slide-right").each(function () {
-    var scroll = $(window).scrollTop();
-    var target = $(this).offset().top;
-    var windowHeight = $(window).height();
-    if (scroll > target - windowHeight + $(this).outerHeight()) {
-      $(this).addClass("inview-slide-right");
-    }
-  });
-});
 
 $(window).scroll(function () {
   $(".voice-item").each(function () {
     var scroll = $(window).scrollTop();
     var target = $(this).offset().top;
     var windowHeight = $(window).height();
-    if (scroll > target - windowHeight + $(this).outerHeight()) {
-      $(this).addClass("inview-voice-item");
+    if (scroll > target - windowHeight + $(this).outerHeight() * 0.5) {
+      $(this).find(".balloon").addClass("inView-balloon"); 
     }
   });
 });
