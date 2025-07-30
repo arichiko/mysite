@@ -64,8 +64,8 @@ gsap.to(sections, {
 ===================================================*/
 
 document.addEventListener('DOMContentLoaded', () => {
-   // 全てのカードアイテムを取得
-   const cardItems = document.querySelectorAll('.card-item');
+  // 全てのカードアイテムを取得
+  const cardItems = document.querySelectorAll('.card-item');
 
    // タッチデバイス判定をせずに、常にクリックイベントを設定する
    cardItems.forEach(cardItem => {
@@ -91,42 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
 /*=================================================
  event
 ===================================================*/
-// $(function () {
-//   let cards = gsap.utils.toArray(".event-card-wrapper");
 
-//   let stickDistance = '100px';
-
-//   let lastCardST = ScrollTrigger.create({
-//     trigger: cards[cards.length - 1],
-//     start: "bottom bottom"
-//   });
-
-//   cards.forEach((card, index) => {
-
-//     ScrollTrigger.create({
-//       trigger: card,
-//       start: "top top",
-//       end: () => "+=450",
-//       endTrigger: cards[index + 1] || card, // 次のカードがあれば、それまでで終了
-//       pin: true,
-//       pinSpacing: false,
-//       ease: "none",
-//       toggleActions: "restart none none reverse"
-//     });
-//   });
-// });
 gsap.registerPlugin(ScrollTrigger);
 
 ScrollTrigger.matchMedia({
 
-  // 💻 PC表示（幅801px以上）
   "(min-width: 856px)": function () {
     const cards = gsap.utils.toArray(".event-card-wrapper");
 
     cards.forEach((card, index) => {
       ScrollTrigger.create({
         trigger: card,
-        start: "top top",
+        start: "top 4%",
         endTrigger: cards[index + 1] || card,
         end: "+=450",
         pin: true,
@@ -135,25 +111,27 @@ ScrollTrigger.matchMedia({
       });
     });
   },
+}),
 
-  // 📱 モバイル表示（幅800px以下）
-  "(max-width: 856px)": function () {
-    const cards = gsap.utils.toArray(".event-card-wrapper");
-
-    cards.forEach((card, index) => {
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top+=300 top", // ← テキスト下に出てくるように調整
-        endTrigger: cards[index + 1] || card,
-        end: "+=400",
-        pin: true,
-        pinSpacing: false,
-        toggleActions: "restart none none reverse",
+  ScrollTrigger.matchMedia({
+    // 856px未満
+    "(max-width: 855px)": function () {
+      gsap.utils.toArray(".event-card-wrapper").forEach((card, i) => {
+        gsap.from(card, {
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: i * 0.2,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none reverse"
+          }
+        });
       });
-    });
-  }
-
-});
+    }
+  });
 
 /*=================================================
 voice
@@ -176,7 +154,7 @@ $(window).scroll(function () {
   Q&A アコーディオン
 ===================================================*/
 
-$('.accordion-header').click(function() {
+$('.accordion-header').click(function () {
   $(this).next().slideToggle();
   $(this).toggleClass('active');
 });
@@ -184,15 +162,15 @@ $('.accordion-header').click(function() {
 /*=================================================
   背景波線のスクロールアニメーション
 ===================================================*/
-$(window).on('scroll', function() {
-    // 現在のスクロール量を取得
-    let scrollTop = $(this).scrollTop();
+$(window).on('scroll', function () {
+  // 現在のスクロール量を取得
+  let scrollTop = $(this).scrollTop();
 
-    // スクロール量に応じて背景の位置を計算
-    // 例: スクロール量1pxにつき、背景を0.5px上に動かす（速度調整）
-    // 数値を調整して「流れる」速度を変えられます
-    let backgroundY = -scrollTop * 1; // スクロールダウンで背景が上に動く
+  // スクロール量に応じて背景の位置を計算
+  // 例: スクロール量1pxにつき、背景を0.5px上に動かす（速度調整）
+  // 数値を調整して「流れる」速度を変えられます
+  let backgroundY = -scrollTop * 1; // スクロールダウンで背景が上に動く
 
-    // bodyのbackground-position-yを更新
-    $('main').css('background-position-y', backgroundY + 'px');
+  // bodyのbackground-position-yを更新
+  $('main').css('background-position-y', backgroundY + 'px');
 });
