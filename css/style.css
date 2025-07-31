@@ -698,12 +698,15 @@ section {
 /* ---------------------------
   voice
   --------------------------- */
-.voice .voice-item {
+.voice  .voice-container {
+  padding-top: 40px;
+}
+
+.voice-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 60px;
-  padding-top: 40px;
+  margin-bottom: 24px;
 }
 
 .entrant img {
@@ -712,7 +715,7 @@ section {
 
 
 .balloon {
-  width: 70%;
+  width: 80%;
   margin-bottom: 40px;
   padding: 20px;
   background: #E1F4F2;

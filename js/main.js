@@ -9,17 +9,17 @@ $(function () {
     } else {
       $("header").addClass("open");
     }
-  });
 
-  $(".mask").on("click", function () {
-    $("header").removeClass("open");
-  });
 
-    $(".header-nav a, .header-inner-list a").on("click", function () {
-    $("header").removeClass("open");
+    $(".mask").on("click", function () {
+      $("header").removeClass("open");
+    });
+
+      $(".header-nav a, .header-inner-list a").on("click", function () {
+      $("header").removeClass("open");
+    });
   });
 });
-
 /*=================================================
   スムーススクロール
 ===================================================*/
@@ -42,50 +42,45 @@ $(function () {
 ===================================================*/
 
 gsap.registerPlugin(ScrollTrigger);
-
-// 横スクロールさせるパネルのセレクタを調整
-let sections = gsap.utils.toArray(".card-item");
-
+let sections = gsap.utils.toArray(".card-item"); // 横スクロールさせるパネルのセレクタを調整
 gsap.to(sections, {
-  xPercent: -100 * (sections.length - 1), // 各パネルを横に移動させる
-  ease: "none", // イージングなしでリニアに
+  xPercent: -100 * (sections.length - 1), // 各パネルを横に移動させる 左に100%移動 × (6-1) カード５枚分左に移動すれば、最後のカードまで表示されるという計算
+  ease: "none", // イージングなしでリニア(直線的)に移動
   scrollTrigger: {
-    trigger: ".guide", // スクロール開始のトリガー要素
-    pin: true,
+    trigger: ".guide", // スクロール開始のトリガー要素 .guideに入ったら横スクロール開始
+    pin: true, // (.guide) が、スクロールアニメーション中、画面の決まった位置に固定（ピン留め）される
     scrub: 1, // スクロールにアニメーションを連動 (1は少し遅れて追従)
-    snap: 1 / (sections.length - 1), // 各パネルの終点でスナップ
-    end: () => "+=" + document.querySelector(".guide").offsetWidth
+    snap: 1 / (sections.length - 1), // 各パネルの終点でスナップ スクロールを止めたときに、アニメーションが「カチッ」と区切りの良い位置に自動的に移動
+    end: () => "+=" + document.querySelector(".guide").offsetWidth //.guide 要素の幅分だけ下にスクロールしたところで、アニメーションが終了
   }
 });
 
 
 /*=================================================
-//guide　sp時カードのクリックイベント
+//guide sp時カードのクリックイベント
 ===================================================*/
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 全てのカードアイテムを取得
-  const cardItems = document.querySelectorAll('.card-item');
+  const cardItems = document.querySelectorAll('.card-item');  // 全てのカードアイテムを取得
 
    // タッチデバイス判定をせずに、常にクリックイベントを設定する
-   cardItems.forEach(cardItem => {
-       const card = cardItem.querySelector('.card');
-       
+    cardItems.forEach(cardItem => {
+      const card = cardItem.querySelector('.card');
        // クリックイベントリスナーを追加
-       card.addEventListener('click', () => {
+      card.addEventListener('click', () => {
            // 'is-flipped' クラスをトグルする (あれば削除、なければ追加)
-           card.classList.toggle('is-flipped');
-       });
+          card.classList.toggle('is-flipped');
+      });
 
        // カードの裏面をクリックしたときに、リンクが反応するように考慮
-       const cardBackText = card.querySelector('.card-back-text');
-       if (cardBackText) {
-           cardBackText.addEventListener('click', (e) => {
+      const cardBackText = card.querySelector('.card-back-text');
+      if (cardBackText) {
+          cardBackText.addEventListener('click', (e) => {
                e.stopPropagation(); // イベントのバブリングを停止
                // ここでリンクのデフォルト動作（ページ遷移）は維持される
-           });
-       }
-   });
+          });
+      }
+  });
 });
 
 /*=================================================
