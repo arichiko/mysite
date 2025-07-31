@@ -1,4 +1,3 @@
-
 /*=================================================
   toggle-btn
 ===================================================*/
@@ -137,17 +136,20 @@ ScrollTrigger.matchMedia({
 voice
 ===================================================*/
 
-$(window).scroll(function () {
-  $(".voice-item").each(function () {
-    var scroll = $(window).scrollTop();
-    var target = $(this).offset().top;
-    var windowHeight = $(window).height();
-    if (scroll > target - windowHeight + $(this).outerHeight() * 0.5) {
-      $(this).find(".balloon").addClass("inView-balloon"); 
-    }
+ gsap.utils.toArray(".voice-item .balloon").forEach((balloon, i) => {
+    gsap.from(balloon, {
+      scale: 0.1,
+      opacity: 0,
+      duration: 0.6,
+      ease: "ease-out",
+      delay: i * 0.1,
+      scrollTrigger: {
+        trigger: balloon.parentElement,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      }
+    });
   });
-});
-
 
 
 /*=================================================
