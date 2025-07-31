@@ -344,7 +344,7 @@ section {
 }
 
 .about-inr {
-    padding-top: 40px;
+  padding-top: 40px;
   margin: 0 auto;
   max-width: 1000px;
 }
@@ -370,7 +370,7 @@ section {
 }
 
 .point-block .point {
-  width: 80%;
+  width: 70%;
   margin-bottom: 20px;
   height: auto;
   vertical-align: bottom;
@@ -379,16 +379,33 @@ section {
 .point-content {
   width: 65%;
 }
-
 .point-content h3 {
-  font-size: 26px;
-  margin: 0 0 30px;
-  padding: 8px;
+  font-size: 24px;
+  margin: 0 0 26px;
+  padding-bottom: 5px;
   font-weight: bold;
-  position: relative;
   border-bottom: solid 1px #444;
 }
-
+.about-button{
+  text-align: center;
+}
+.button-orange{
+  background: linear-gradient(to bottom, #f9c350, #e8a832);
+    display: inline-block;
+    width: 300px;
+    color: #fff;
+    padding: 20px 0;
+    border-radius: 20px;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.button-orange:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
 @media screen and (max-width: 900px) {
   .about-flex {
     flex-direction: column;
