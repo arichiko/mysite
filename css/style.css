@@ -327,6 +327,22 @@ section {
   text-shadow: 1px 1px 1px rgba(51, 51, 51, 0.5);
 }
 
+@media screen and (max-width:750px) {
+  .section-title img {
+  width: 100px;
+  height: 100px;
+}
+.section-title h2 {
+  top: 18px;
+  left: 30px;
+  font-size: 24px;
+}
+.section-title p {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+}
+}
 /* ---------------------------
   about
   ---------------------------*/
