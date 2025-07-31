@@ -1,4 +1,3 @@
-
 /*=================================================
   toggle-btn
 ===================================================*/
@@ -9,17 +8,17 @@ $(function () {
     } else {
       $("header").addClass("open");
     }
+  });
 
+  $(".mask").on("click", function () {
+    $("header").removeClass("open");
+  });
 
-    $(".mask").on("click", function () {
-      $("header").removeClass("open");
-    });
-
-      $(".header-nav a, .header-inner-list a").on("click", function () {
-      $("header").removeClass("open");
-    });
+    $(".header-nav a, .header-inner-list a").on("click", function () {
+    $("header").removeClass("open");
   });
 });
+
 /*=================================================
   スムーススクロール
 ===================================================*/
@@ -42,45 +41,50 @@ $(function () {
 ===================================================*/
 
 gsap.registerPlugin(ScrollTrigger);
-let sections = gsap.utils.toArray(".card-item"); // 横スクロールさせるパネルのセレクタを調整
+
+// 横スクロールさせるパネルのセレクタを調整
+let sections = gsap.utils.toArray(".card-item");
+
 gsap.to(sections, {
-  xPercent: -100 * (sections.length - 1), // 各パネルを横に移動させる 左に100%移動 × (6-1) カード５枚分左に移動すれば、最後のカードまで表示されるという計算
-  ease: "none", // イージングなしでリニア(直線的)に移動
+  xPercent: -100 * (sections.length - 1), // 各パネルを横に移動させる
+  ease: "none", // イージングなしでリニアに
   scrollTrigger: {
-    trigger: ".guide", // スクロール開始のトリガー要素 .guideに入ったら横スクロール開始
-    pin: true, // (.guide) が、スクロールアニメーション中、画面の決まった位置に固定（ピン留め）される
+    trigger: ".guide", // スクロール開始のトリガー要素
+    pin: true,
     scrub: 1, // スクロールにアニメーションを連動 (1は少し遅れて追従)
-    snap: 1 / (sections.length - 1), // 各パネルの終点でスナップ スクロールを止めたときに、アニメーションが「カチッ」と区切りの良い位置に自動的に移動
-    end: () => "+=" + document.querySelector(".guide").offsetWidth //.guide 要素の幅分だけ下にスクロールしたところで、アニメーションが終了
+    snap: 1 / (sections.length - 1), // 各パネルの終点でスナップ
+    end: () => "+=" + document.querySelector(".guide").offsetWidth
   }
 });
 
 
 /*=================================================
-//guide sp時カードのクリックイベント
+//guide　sp時カードのクリックイベント
 ===================================================*/
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cardItems = document.querySelectorAll('.card-item');  // 全てのカードアイテムを取得
+  // 全てのカードアイテムを取得
+  const cardItems = document.querySelectorAll('.card-item');
 
    // タッチデバイス判定をせずに、常にクリックイベントを設定する
-    cardItems.forEach(cardItem => {
-      const card = cardItem.querySelector('.card');
+   cardItems.forEach(cardItem => {
+       const card = cardItem.querySelector('.card');
+       
        // クリックイベントリスナーを追加
-      card.addEventListener('click', () => {
+       card.addEventListener('click', () => {
            // 'is-flipped' クラスをトグルする (あれば削除、なければ追加)
-          card.classList.toggle('is-flipped');
-      });
+           card.classList.toggle('is-flipped');
+       });
 
        // カードの裏面をクリックしたときに、リンクが反応するように考慮
-      const cardBackText = card.querySelector('.card-back-text');
-      if (cardBackText) {
-          cardBackText.addEventListener('click', (e) => {
+       const cardBackText = card.querySelector('.card-back-text');
+       if (cardBackText) {
+           cardBackText.addEventListener('click', (e) => {
                e.stopPropagation(); // イベントのバブリングを停止
                // ここでリンクのデフォルト動作（ページ遷移）は維持される
-          });
-      }
-  });
+           });
+       }
+   });
 });
 
 /*=================================================
@@ -132,30 +136,20 @@ ScrollTrigger.matchMedia({
 voice
 ===================================================*/
 
-$(window).scroll(function () {
-  $(".voice-item").each(function () {
-    var scroll = $(window).scrollTop();
-    var target = $(this).offset().top;
-    var windowHeight = $(window).height();
-    if (scroll > target - windowHeight + $(this).outerHeight() * 0.5) {
-      $(this).find(".balloon").addClass("inView-balloon"); 
-    }
+ gsap.utils.toArray(".voice-item .balloon").forEach((balloon, i) => {
+    gsap.from(balloon, {
+      scale: 0.1,
+      opacity: 0,
+      duration: 0.6,
+      ease: "ease-out",
+      delay: i * 0.1,
+      scrollTrigger: {
+        trigger: balloon.parentElement,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      }
+    });
   });
-});
-// gsap.utils.toArray(".voice-item .balloon").forEach((balloon, i) => {
-//   gsap.from(balloon, {
-//     scale: 0.1,    // 0%の状態 (zoomInキーフレームの0%に相当)
-//     opacity: 0,    // 0%の状態
-//     duration: 0.6, // zoomInキーフレームのdurationに合わせる
-//     ease: "ease-out", // zoomInキーフレームのease-outに合わせる
-//     delay: i * 0.1, // 各バルーンが順番に表示されるように遅延を追加（任意）
-//     scrollTrigger: {
-//       trigger: balloon.parentElement, // balloonの親要素である.voice-itemをトリガーにする
-//       start: "top 90%", // .voice-itemの上端がビューポートの90%に来たらアニメーション開始
-//       toggleActions: "play none none reverse" // 画面外に出たら初期状態に戻り、再表示時にアニメーション再実行
-//     }
-//   });
-// });
 
 
 /*=================================================
