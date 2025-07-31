@@ -142,7 +142,20 @@ $(window).scroll(function () {
     }
   });
 });
-
+// gsap.utils.toArray(".voice-item .balloon").forEach((balloon, i) => {
+//   gsap.from(balloon, {
+//     scale: 0.1,    // 0%の状態 (zoomInキーフレームの0%に相当)
+//     opacity: 0,    // 0%の状態
+//     duration: 0.6, // zoomInキーフレームのdurationに合わせる
+//     ease: "ease-out", // zoomInキーフレームのease-outに合わせる
+//     delay: i * 0.1, // 各バルーンが順番に表示されるように遅延を追加（任意）
+//     scrollTrigger: {
+//       trigger: balloon.parentElement, // balloonの親要素である.voice-itemをトリガーにする
+//       start: "top 90%", // .voice-itemの上端がビューポートの90%に来たらアニメーション開始
+//       toggleActions: "play none none reverse" // 画面外に出たら初期状態に戻り、再表示時にアニメーション再実行
+//     }
+//   });
+// });
 
 
 /*=================================================
