@@ -41,10 +41,7 @@ $(function () {
 ===================================================*/
 
 gsap.registerPlugin(ScrollTrigger);
-
-// 横スクロールさせるパネルのセレクタを調整
 let sections = gsap.utils.toArray(".card-item");
-
 gsap.to(sections, {
   xPercent: -100 * (sections.length - 1), // 各パネルを横に移動させる
   ease: "none", // イージングなしでリニアに
@@ -59,36 +56,31 @@ gsap.to(sections, {
 
 
 /*=================================================
-//guide　sp時カードのクリックイベント
+//guide sp時カードのクリックイベント
 ===================================================*/
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 全てのカードアイテムを取得
   const cardItems = document.querySelectorAll('.card-item');
-
    // タッチデバイス判定をせずに、常にクリックイベントを設定する
-   cardItems.forEach(cardItem => {
-       const card = cardItem.querySelector('.card');
-       
+  cardItems.forEach(cardItem => {
+      const card = cardItem.querySelector('.card');
        // クリックイベントリスナーを追加
-       card.addEventListener('click', () => {
+      card.addEventListener('click', () => {
            // 'is-flipped' クラスをトグルする (あれば削除、なければ追加)
-           card.classList.toggle('is-flipped');
-       });
-
+          card.classList.toggle('is-flipped');
+      });
        // カードの裏面をクリックしたときに、リンクが反応するように考慮
-       const cardBackText = card.querySelector('.card-back-text');
-       if (cardBackText) {
-           cardBackText.addEventListener('click', (e) => {
+      const cardBackText = card.querySelector('.card-back-text');
+      if (cardBackText) {
+        cardBackText.addEventListener('click', (e) => {
                e.stopPropagation(); // イベントのバブリングを停止
-               // ここでリンクのデフォルト動作（ページ遷移）は維持される
-           });
-       }
-   });
+          });
+      }
+  });
 });
 
 /*=================================================
- event
+  event
 ===================================================*/
 
 gsap.registerPlugin(ScrollTrigger);
@@ -133,23 +125,23 @@ ScrollTrigger.matchMedia({
   });
 
 /*=================================================
-voice
+  voice
 ===================================================*/
 
- gsap.utils.toArray(".voice-item .balloon").forEach((balloon, i) => {
-    gsap.from(balloon, {
-      scale: 0.1,
-      opacity: 0,
-      duration: 0.6,
-      ease: "ease-out",
-      delay: i * 0.1,
-      scrollTrigger: {
-        trigger: balloon.parentElement,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      }
-    });
+gsap.utils.toArray(".voice-item .balloon").forEach((balloon, i) => {
+  gsap.from(balloon, {
+    scale: 0.1,
+    opacity: 0,
+    duration: 0.6,
+    ease: "ease-out",
+    delay: i * 0.1,
+    scrollTrigger: {
+      trigger: balloon.parentElement,
+      start: "top 90%",
+      toggleActions: "play none none reverse",
+    }
   });
+});
 
 
 /*=================================================
@@ -165,14 +157,7 @@ $('.accordion-header').click(function () {
   背景波線のスクロールアニメーション
 ===================================================*/
 $(window).on('scroll', function () {
-  // 現在のスクロール量を取得
   let scrollTop = $(this).scrollTop();
-
-  // スクロール量に応じて背景の位置を計算
-  // 例: スクロール量1pxにつき、背景を0.5px上に動かす（速度調整）
-  // 数値を調整して「流れる」速度を変えられます
   let backgroundY = -scrollTop * 1; // スクロールダウンで背景が上に動く
-
-  // bodyのbackground-position-yを更新
   $('main').css('background-position-y', backgroundY + 'px');
 });

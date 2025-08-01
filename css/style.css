@@ -407,20 +407,6 @@ section {
   transform: scale(1.1);
 }
 
-/* 
-@media screen and (max-width: 600px) {
-
-  .point-content {
-    width: 90%;
-  }
-
-  .point-content h3 {
-    text-align: center;
-    font-size: 18px;
-  }
-
-} */
-
 /* ---------------------------
   guide
   ---------------------------*/
@@ -539,11 +525,10 @@ section {
 }
 
 .card-back {
-  color: #fff;
-  transform: rotateY(180deg);
-  /* 裏面は最初から180度回転させておく */
   justify-content: flex-start;
   padding: 24px;
+  transform: rotateY(180deg);
+  color: #fff;
 }
 
 .card-back-title {
@@ -1483,7 +1468,7 @@ footer {
 
   .card-face,
   .card-back {
-    padding: 16px;
+    padding: 12px;
   }
 
   .card-back-text {
@@ -1567,7 +1552,7 @@ footer {
   }
 
   .card-face {
-    padding: 16px;
+    font-size: 14px;
   }
 
   .card-front img {
